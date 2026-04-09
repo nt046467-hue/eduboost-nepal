@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — EduBoost Nepal</title>
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Sora", "sans-serif"],
+              serif: ["DM Serif Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fb923c, #f97316, #dc2626);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      .input-field {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+      }
+      .input-field:focus {
+        border-color: #f97316;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+      }
+      .nepal-stripe {
+        background: linear-gradient(90deg, #003893 50%, #dc143c 50%);
+        height: 4px;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white font-sans min-h-screen flex flex-col">
+    <div class="nepal-stripe w-full"></div>
+
+    <div class="flex-1 flex items-center justify-center px-4 py-12">
+      <div class="w-full max-w-md">
+        <!-- Logo -->
+        <div class="text-center mb-8">
+          <a href="../index.html" class="inline-flex items-center gap-3 mb-6">
+            <img
+              src="../public/favicon.png"
+              alt="EduBoost Nepal"
+              class="w-12 h-12 rounded-2xl object-cover"
+            />
+            <span class="font-bold text-2xl"
+              >EduBoost <span class="gradient-text">Nepal</span></span
+            >
+          </a>
+          <h1 class="text-2xl font-bold mb-2">Welcome back!</h1>
+          <p class="text-slate-400 text-sm">
+            Login to continue your exam prep journey
+          </p>
+        </div>
+
+        <!-- Login Card -->
+        <div class="glass rounded-3xl p-8">
+          <!-- Error/Success message -->
+          <div
+            id="authMessage"
+            class="hidden mb-4 p-3 rounded-xl text-sm text-center font-medium"
+          ></div>
+
+          <!-- Login Form -->
+          <form id="loginForm" class="space-y-5" onsubmit="handleLogin(event)">
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Email Address</label
+              >
+              <input
+                id="loginEmail"
+                type="email"
+                required
+                placeholder="your@email.com"
+                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Password</label
+              >
+              <div class="relative">
+                <input
+                  id="loginPassword"
+                  type="password"
+                  required
+                  placeholder="••••••••"
+                  class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm pr-12"
+                />
+                <button
+                  type="button"
+                  onclick="togglePasswordVisibility('loginPassword')"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white transition-colors text-xs"
+                >
+                  👁
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between text-sm">
+              <label
+                class="flex items-center gap-2 text-slate-400 cursor-pointer"
+              >
+                <input type="checkbox" class="rounded" /> Remember me
+              </label>
+              <button
+                type="button"
+                onclick="handleForgotPassword()"
+                class="text-orange-400 hover:text-orange-300 transition-colors"
+              >
+                Forgot password?
+              </button>
+            </div>
+
+            <button
+              type="submit"
+              id="loginBtn"
+              class="btn-primary w-full text-white font-bold py-3.5 rounded-xl transition-all duration-300 text-sm"
+            >
+              Sign In →
+            </button>
+          </form>
+
+          <div class="my-6 flex items-center gap-4">
+            <div class="flex-1 h-px bg-slate-700"></div>
+            <div class="text-slate-500 text-xs">OR</div>
+            <div class="flex-1 h-px bg-slate-700"></div>
+          </div>
+
+          <!-- Google Sign In -->
+          <button
+            onclick="handleGoogleLogin()"
+            class="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-xl border border-slate-700 hover:border-slate-500 hover:bg-slate-800/50 transition-all text-sm font-medium"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24">
+              <path
+                fill="#4285F4"
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+              />
+              <path
+                fill="#34A853"
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+              />
+              <path
+                fill="#FBBC05"
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
+              />
+              <path
+                fill="#EA4335"
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+              />
+            </svg>
+            Continue with Google
+          </button>
+
+          <p class="text-center text-slate-400 text-sm mt-6">
+            Don't have an account?
+            <a
+              href="signup.html"
+              class="text-orange-400 hover:text-orange-300 font-semibold transition-colors ml-1"
+              >Sign up free →</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Initialize Firebase
+      firebase.initializeApp(FIREBASE_CONFIG);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      // Check if already logged in
+      auth.onAuthStateChanged((user) => {
+        if (user) window.location.href = "dashboard.html";
+      });
+
+      function showMessage(msg, isError = false) {
+        const el = document.getElementById("authMessage");
+        el.textContent = msg;
+        el.className = `mb-4 p-3 rounded-xl text-sm text-center font-medium ${isError ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-green-500/20 text-green-300 border border-green-500/30"}`;
+        el.classList.remove("hidden");
+      }
+
+      function setLoading(loading) {
+        const btn = document.getElementById("loginBtn");
+        btn.disabled = loading;
+        btn.textContent = loading ? "Signing in..." : "Sign In →";
+        btn.style.opacity = loading ? "0.7" : "1";
+      }
+
+      async function handleLogin(e) {
+        e.preventDefault();
+        const email = document.getElementById("loginEmail").value.trim();
+        const password = document.getElementById("loginPassword").value;
+
+        setLoading(true);
+        try {
+          await auth.signInWithEmailAndPassword(email, password);
+          showMessage("Login successful! Redirecting...");
+          setTimeout(() => (window.location.href = "dashboard.html"), 1000);
+        } catch (err) {
+          const msgs = {
+            "auth/user-not-found": "No account found with this email.",
+            "auth/wrong-password": "Incorrect password. Please try again.",
+            "auth/invalid-email": "Please enter a valid email address.",
+            "auth/too-many-requests":
+              "Too many attempts. Please try again later.",
+          };
+          showMessage(msgs[err.code] || err.message, true);
+          setLoading(false);
+        }
+      }
+
+      async function handleGoogleLogin() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        try {
+          const result = await auth.signInWithPopup(provider);
+          const user = result.user;
+          // Create user doc if new
+          const userRef = db.collection("users").doc(user.uid);
+          const doc = await userRef.get();
+          if (!doc.exists) {
+            await userRef.set({
+              name: user.displayName,
+              email: user.email,
+              role: "student",
+              photoURL: user.photoURL,
+              createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            });
+          }
+          window.location.href = "dashboard.html";
+        } catch (err) {
+          showMessage("Google sign-in failed. " + err.message, true);
+        }
+      }
+
+      async function handleForgotPassword() {
+        const email = document.getElementById("loginEmail").value.trim();
+        if (!email) {
+          showMessage("Please enter your email address first.", true);
+          return;
+        }
+        try {
+          await auth.sendPasswordResetEmail(email);
+          showMessage("Password reset email sent! Check your inbox.");
+        } catch (err) {
+          showMessage("Failed to send reset email. " + err.message, true);
+        }
+      }
+
+      function togglePasswordVisibility(id) {
+        const input = document.getElementById(id);
+        input.type = input.type === "password" ? "text" : "password";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+  command = ""
+  functions = "functions"
+
+# Static site with no build step. Netlify should publish the folder that contains index.html.
+# Serverless functions are located under the workspace-level functions directory.

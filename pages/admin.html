@@ -1,0 +1,736 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel — EduBoost Nepal</title>
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Sora", "sans-serif"] } } },
+      };
+    </script>
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fb923c, #f97316, #dc2626);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+      }
+      .input-field {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+      }
+      .input-field:focus {
+        border-color: #f97316;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
+      }
+      .tab-btn.active {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+        color: white;
+      }
+      .nepal-stripe {
+        background: linear-gradient(90deg, #003893 50%, #dc143c 50%);
+        height: 3px;
+      }
+      .status-badge {
+        padding: 2px 10px;
+        border-radius: 9999px;
+        font-size: 0.7rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white font-sans min-h-screen">
+    <div class="nepal-stripe w-full"></div>
+
+    <nav
+      class="bg-slate-900 border-b border-slate-800 px-6 py-4 flex items-center justify-between"
+    >
+      <div class="flex items-center gap-4">
+        <a
+          href="dashboard.html"
+          class="text-slate-400 hover:text-white transition-colors text-sm"
+          >← Dashboard</a
+        >
+        <span class="text-slate-600">|</span>
+        <h1 class="font-bold text-lg">
+          🎛️ <span class="gradient-text">Admin Panel</span>
+        </h1>
+      </div>
+      <div
+        id="adminBadge"
+        class="hidden glass px-3 py-1.5 rounded-xl text-xs font-semibold text-orange-300"
+      >
+        👑 Teacher Access
+      </div>
+    </nav>
+
+    <!-- Access Denied Screen -->
+    <div
+      id="accessDenied"
+      class="hidden flex items-center justify-center min-h-[80vh]"
+    >
+      <div class="text-center">
+        <div class="text-6xl mb-4">🔒</div>
+        <h2 class="text-2xl font-bold mb-3">Access Restricted</h2>
+        <p class="text-slate-400 mb-6">
+          The Admin Panel is only for teachers and administrators.
+        </p>
+        <a
+          href="dashboard.html"
+          class="btn-primary text-white font-semibold px-6 py-3 rounded-xl"
+          >Back to Dashboard</a
+        >
+      </div>
+    </div>
+
+    <!-- Admin Content -->
+    <div
+      id="adminContent"
+      class="hidden max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8"
+    >
+      <!-- Stats -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+        <div class="glass rounded-2xl p-5">
+          <div class="text-2xl mb-2">📚</div>
+          <div class="text-2xl font-bold" id="totalNotes">—</div>
+          <div class="text-slate-400 text-xs">Total Notes</div>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <div class="text-2xl mb-2">✍️</div>
+          <div class="text-2xl font-bold" id="totalPosts">—</div>
+          <div class="text-slate-400 text-xs">Blog Posts</div>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <div class="text-2xl mb-2">👥</div>
+          <div class="text-2xl font-bold" id="totalUsers">—</div>
+          <div class="text-slate-400 text-xs">Registered Users</div>
+        </div>
+        <div class="glass rounded-2xl p-5">
+          <div class="text-2xl mb-2">💾</div>
+          <div class="text-2xl font-bold" id="totalSaved">—</div>
+          <div class="text-slate-400 text-xs">Saved Items</div>
+        </div>
+      </div>
+
+      <!-- Tabs -->
+      <div class="flex gap-2 flex-wrap mb-6">
+        <button
+          onclick="switchTab('notes')"
+          id="tab-notes"
+          class="tab-btn active px-5 py-2.5 rounded-xl text-sm font-semibold glass"
+        >
+          📚 Add Note
+        </button>
+        <button
+          onclick="switchTab('blog')"
+          id="tab-blog"
+          class="tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold glass text-slate-300"
+        >
+          ✍️ Add Blog Post
+        </button>
+        <button
+          onclick="switchTab('manage')"
+          id="tab-manage"
+          class="tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold glass text-slate-300"
+        >
+          📋 Manage Content
+        </button>
+        <button
+          onclick="switchTab('users')"
+          id="tab-users"
+          class="tab-btn px-5 py-2.5 rounded-xl text-sm font-semibold glass text-slate-300"
+        >
+          👥 Users
+        </button>
+      </div>
+
+      <!-- ADD NOTE TAB -->
+      <div id="panel-notes" class="panel">
+        <div class="glass rounded-2xl p-6">
+          <h2 class="font-bold text-lg mb-6 flex items-center gap-2">
+            <span>📚</span> Add New Note
+          </h2>
+          <form id="noteForm" class="space-y-4" onsubmit="submitNote(event)">
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Subject *</label
+                >
+                <select
+                  id="noteSubject"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white appearance-none"
+                >
+                  <option value="">Select Subject</option>
+                  <option>Physics</option>
+                  <option>Chemistry</option>
+                  <option>Biology</option>
+                  <option>Mathematics</option>
+                  <option>Computer Science</option>
+                  <option>English</option>
+                  <option>Nepali</option>
+                  <option>Economics</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Class *</label
+                >
+                <select
+                  id="noteClass"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white appearance-none"
+                >
+                  <option value="11">Class 11</option>
+                  <option value="12">Class 12</option>
+                </select>
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Chapter *</label
+                >
+                <input
+                  id="noteChapter"
+                  required
+                  type="text"
+                  placeholder="e.g. Newton's Laws"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Title *</label
+                >
+                <input
+                  id="noteTitle"
+                  required
+                  type="text"
+                  placeholder="Note title"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Emoji Icon</label
+                >
+                <input
+                  id="noteIcon"
+                  type="text"
+                  placeholder="e.g. ⚛️"
+                  maxlength="4"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Summary *</label
+              >
+              <input
+                id="noteSummary"
+                required
+                type="text"
+                placeholder="Short description of this note"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Tags (comma separated)</label
+              >
+              <input
+                id="noteTags"
+                type="text"
+                placeholder="e.g. Vectors, Scalar, Motion"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Content (HTML or Plain Text) *</label
+              >
+              <textarea
+                id="noteContent"
+                required
+                placeholder="Write the full note content here. You can use HTML for formatting.&#10;&#10;Example:&#10;&lt;h2&gt;Newton's First Law&lt;/h2&gt;&#10;&lt;p&gt;An object at rest...&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;Point 1&lt;/li&gt;&lt;/ul&gt;"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 resize-none h-56 font-mono"
+              ></textarea>
+            </div>
+            <div class="flex gap-3">
+              <button
+                type="submit"
+                class="btn-primary text-white font-bold px-8 py-3.5 rounded-xl text-sm flex items-center gap-2"
+              >
+                <span>➕</span> Publish Note
+              </button>
+              <button
+                type="reset"
+                class="glass px-5 py-3.5 rounded-xl text-sm font-medium hover:bg-white/10 transition-all text-slate-300"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- ADD BLOG POST TAB -->
+      <div id="panel-blog" class="panel hidden">
+        <div class="glass rounded-2xl p-6">
+          <h2 class="font-bold text-lg mb-6 flex items-center gap-2">
+            <span>✍️</span> Add Blog Post / Guide
+          </h2>
+          <form
+            id="blogForm"
+            class="space-y-4"
+            onsubmit="submitBlogPost(event)"
+          >
+            <div class="grid md:grid-cols-2 gap-4">
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Title *</label
+                >
+                <input
+                  id="postTitle"
+                  required
+                  type="text"
+                  placeholder="Blog post title"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Category *</label
+                >
+                <select
+                  id="postCategory"
+                  required
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white appearance-none"
+                >
+                  <option value="tips">Study Tips</option>
+                  <option value="physics">Physics</option>
+                  <option value="chemistry">Chemistry</option>
+                  <option value="math">Mathematics</option>
+                  <option value="biology">Biology</option>
+                  <option value="exam">Exam Strategy</option>
+                  <option value="news">NEB News</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Author Name *</label
+                >
+                <input
+                  id="postAuthor"
+                  required
+                  type="text"
+                  placeholder="Your name"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Read Time</label
+                >
+                <input
+                  id="postReadTime"
+                  type="text"
+                  placeholder="e.g. 8 min"
+                  value="5 min"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+              <div>
+                <label
+                  class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                  >Emoji</label
+                >
+                <input
+                  id="postEmoji"
+                  type="text"
+                  placeholder="📚"
+                  maxlength="4"
+                  value="✍️"
+                  class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+                />
+              </div>
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Summary *</label
+              >
+              <textarea
+                id="postSummary"
+                required
+                placeholder="Brief description shown in the blog listing (2-3 sentences)"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 resize-none h-20"
+              ></textarea>
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Tags (comma separated)</label
+              >
+              <input
+                id="postTags"
+                type="text"
+                placeholder="e.g. NEB, Physics, Tips"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500"
+              />
+            </div>
+            <div>
+              <label
+                class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                >Full Content (HTML) *</label
+              >
+              <textarea
+                id="postContent"
+                required
+                placeholder="Full blog post content. Use HTML tags:&#10;&lt;h2&gt;Section Heading&lt;/h2&gt;&#10;&lt;p&gt;Paragraph&lt;/p&gt;&#10;&lt;ul&gt;&lt;li&gt;List item&lt;/li&gt;&lt;/ul&gt;&#10;&lt;strong&gt;Bold text&lt;/strong&gt;"
+                class="input-field w-full px-4 py-3 rounded-xl text-sm text-white placeholder-slate-500 resize-none h-72 font-mono"
+              ></textarea>
+            </div>
+            <div class="flex gap-3">
+              <button
+                type="submit"
+                class="btn-primary text-white font-bold px-8 py-3.5 rounded-xl text-sm flex items-center gap-2"
+              >
+                <span>🚀</span> Publish Post
+              </button>
+              <button
+                type="reset"
+                class="glass px-5 py-3.5 rounded-xl text-sm font-medium hover:bg-white/10 transition-all text-slate-300"
+              >
+                Reset
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- MANAGE CONTENT TAB -->
+      <div id="panel-manage" class="panel hidden">
+        <div class="glass rounded-2xl p-6 mb-6">
+          <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <span>📚</span> Published Notes
+          </h2>
+          <div id="notesList" class="space-y-3">
+            <div class="text-slate-400 text-sm text-center py-4">
+              Loading notes...
+            </div>
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-6">
+          <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <span>✍️</span> Published Blog Posts
+          </h2>
+          <div id="postsList" class="space-y-3">
+            <div class="text-slate-400 text-sm text-center py-4">
+              Loading posts...
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- USERS TAB -->
+      <div id="panel-users" class="panel hidden">
+        <div class="glass rounded-2xl p-6">
+          <h2 class="font-bold text-lg mb-4 flex items-center gap-2">
+            <span>👥</span> Registered Users
+          </h2>
+          <div id="usersList" class="space-y-3">
+            <div class="text-slate-400 text-sm text-center py-4">
+              Loading users...
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      firebase.initializeApp(FIREBASE_CONFIG);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+      let currentUser = null;
+
+      auth.onAuthStateChanged(async (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+        currentUser = user;
+        const profile = await getUserProfile(user.uid);
+
+        if (profile?.role !== "teacher" && profile?.role !== "admin") {
+          document.getElementById("accessDenied").classList.remove("hidden");
+        } else {
+          document.getElementById("adminContent").classList.remove("hidden");
+          document.getElementById("adminBadge").classList.remove("hidden");
+          loadStats();
+        }
+      });
+
+      function switchTab(tab) {
+        document
+          .querySelectorAll(".panel")
+          .forEach((p) => p.classList.add("hidden"));
+        document.querySelectorAll(".tab-btn").forEach((b) => {
+          b.classList.remove("active");
+          b.classList.add("text-slate-300");
+        });
+        document.getElementById(`panel-${tab}`).classList.remove("hidden");
+        document.getElementById(`tab-${tab}`).classList.add("active");
+        document
+          .getElementById(`tab-${tab}`)
+          .classList.remove("text-slate-300");
+
+        if (tab === "manage") loadAllContent();
+        if (tab === "users") loadUsers();
+      }
+
+      async function loadStats() {
+        try {
+          const [notesSnap, postsSnap, usersSnap, savedSnap] =
+            await Promise.all([
+              db.collection("notes").get(),
+              db.collection("blogPosts").get(),
+              db.collection("users").get(),
+              db.collection("savedContent").get(),
+            ]);
+          document.getElementById("totalNotes").textContent = notesSnap.size;
+          document.getElementById("totalPosts").textContent = postsSnap.size;
+          document.getElementById("totalUsers").textContent = usersSnap.size;
+          document.getElementById("totalSaved").textContent = savedSnap.size;
+        } catch (e) {
+          console.error("Stats error:", e);
+        }
+      }
+
+      async function submitNote(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = "Publishing...";
+
+        const tags = document
+          .getElementById("noteTags")
+          .value.split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+
+        try {
+          await db.collection("notes").add({
+            subject: document.getElementById("noteSubject").value,
+            class: document.getElementById("noteClass").value,
+            chapter: document.getElementById("noteChapter").value,
+            title: document.getElementById("noteTitle").value,
+            icon: document.getElementById("noteIcon").value || "📖",
+            summary: document.getElementById("noteSummary").value,
+            tags,
+            content: document.getElementById("noteContent").value,
+            authorId: currentUser.uid,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+
+          showToast("Note published successfully! 🎉");
+          e.target.reset();
+          loadStats();
+        } catch (err) {
+          showToast("Failed to publish: " + err.message, "error");
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = "<span>➕</span> Publish Note";
+      }
+
+      async function submitBlogPost(e) {
+        e.preventDefault();
+        const btn = e.target.querySelector('[type="submit"]');
+        btn.disabled = true;
+        btn.textContent = "Publishing...";
+
+        const tags = document
+          .getElementById("postTags")
+          .value.split(",")
+          .map((t) => t.trim())
+          .filter(Boolean);
+
+        try {
+          await db.collection("blogPosts").add({
+            title: document.getElementById("postTitle").value,
+            category: document.getElementById("postCategory").value,
+            author: document.getElementById("postAuthor").value,
+            readTime: document.getElementById("postReadTime").value,
+            emoji: document.getElementById("postEmoji").value,
+            summary: document.getElementById("postSummary").value,
+            tags,
+            content: document.getElementById("postContent").value,
+            authorId: currentUser.uid,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+          });
+
+          showToast("Blog post published! 🚀");
+          e.target.reset();
+          loadStats();
+        } catch (err) {
+          showToast("Failed to publish: " + err.message, "error");
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = "<span>🚀</span> Publish Post";
+      }
+
+      async function loadAllContent() {
+        // Load notes
+        try {
+          const notesSnap = await db
+            .collection("notes")
+            .orderBy("createdAt", "desc")
+            .limit(20)
+            .get();
+          const notesList = document.getElementById("notesList");
+          if (notesSnap.empty) {
+            notesList.innerHTML =
+              '<div class="text-slate-400 text-sm text-center py-4">No notes added yet.</div>';
+          } else {
+            notesList.innerHTML = notesSnap.docs
+              .map((doc) => {
+                const d = doc.data();
+                return `<div class="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl">
+            <div>
+              <div class="font-semibold text-sm">${d.title}</div>
+              <div class="text-slate-400 text-xs mt-0.5">${d.subject} • Class ${d.class} • ${d.chapter}</div>
+            </div>
+            <button onclick="deleteDoc('notes', '${doc.id}')" class="text-red-400 hover:text-red-300 transition-colors text-xs px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20">🗑 Delete</button>
+          </div>`;
+              })
+              .join("");
+          }
+
+          // Load posts
+          const postsSnap = await db
+            .collection("blogPosts")
+            .orderBy("createdAt", "desc")
+            .limit(20)
+            .get();
+          const postsList = document.getElementById("postsList");
+          if (postsSnap.empty) {
+            postsList.innerHTML =
+              '<div class="text-slate-400 text-sm text-center py-4">No blog posts added yet.</div>';
+          } else {
+            postsList.innerHTML = postsSnap.docs
+              .map((doc) => {
+                const d = doc.data();
+                return `<div class="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl">
+            <div>
+              <div class="font-semibold text-sm">${d.emoji || "✍️"} ${d.title}</div>
+              <div class="text-slate-400 text-xs mt-0.5">By ${d.author} • ${d.category}</div>
+            </div>
+            <button onclick="deleteDoc('blogPosts', '${doc.id}')" class="text-red-400 hover:text-red-300 transition-colors text-xs px-3 py-1.5 rounded-lg bg-red-500/10 hover:bg-red-500/20">🗑 Delete</button>
+          </div>`;
+              })
+              .join("");
+          }
+        } catch (e) {
+          document.getElementById("notesList").innerHTML =
+            `<div class="text-red-300 text-sm">Error loading content: ${e.message}</div>`;
+        }
+      }
+
+      async function loadUsers() {
+        try {
+          const snap = await db
+            .collection("users")
+            .orderBy("createdAt", "desc")
+            .limit(30)
+            .get();
+          const list = document.getElementById("usersList");
+          if (snap.empty) {
+            list.innerHTML =
+              '<div class="text-slate-400 text-sm text-center py-4">No users found.</div>';
+            return;
+          }
+          list.innerHTML = snap.docs
+            .map((doc) => {
+              const d = doc.data();
+              const roleColors = {
+                student: "bg-blue-500/20 text-blue-300",
+                teacher: "bg-orange-500/20 text-orange-300",
+                admin: "bg-red-500/20 text-red-300",
+              };
+              return `<div class="flex items-center justify-between p-4 bg-slate-800/50 rounded-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center font-bold text-sm">
+              ${(d.name || "U")[0].toUpperCase()}
+            </div>
+            <div>
+              <div class="font-semibold text-sm">${d.name || "Unknown"}</div>
+              <div class="text-slate-400 text-xs">${d.email || ""}</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="status-badge ${roleColors[d.role] || "bg-slate-700 text-slate-300"}">${d.role || "student"}</span>
+            <span class="text-slate-500 text-xs">Class ${d.class || "—"}</span>
+          </div>
+        </div>`;
+            })
+            .join("");
+        } catch (e) {
+          document.getElementById("usersList").innerHTML =
+            `<div class="text-red-300 text-sm">Error: ${e.message}</div>`;
+        }
+      }
+
+      async function deleteDoc(collection, id) {
+        if (!confirm("Are you sure you want to delete this item?")) return;
+        try {
+          await db.collection(collection).doc(id).delete();
+          showToast("Deleted successfully");
+          loadAllContent();
+          loadStats();
+        } catch (e) {
+          showToast("Delete failed: " + e.message, "error");
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,2097 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>How to Score 90+ in NEB Physics: A Topper's Guide</title>
+    <link rel="icon" href="../../public/favicon.png" type="image/png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --ink: #0f1117;
+        --ink-light: #3a3d4a;
+        --ink-muted: #6b7080;
+        --bg: #f5f4f0;
+        --bg-card: #ffffff;
+        --accent: #c0392b;
+        --accent-light: #fdecea;
+        --accent-gold: #d4a017;
+        --accent-gold-light: #fdf6e3;
+        --accent-blue: #1a6bb5;
+        --accent-blue-light: #e8f1fb;
+        --accent-green: #1a7a4a;
+        --accent-green-light: #e6f7ee;
+        --border: #e2e0d8;
+        --shadow-sm: 0 2px 8px rgba(15, 17, 23, 0.06);
+        --shadow-md: 0 6px 24px rgba(15, 17, 23, 0.09);
+        --shadow-lg: 0 16px 48px rgba(15, 17, 23, 0.12);
+        --radius: 16px;
+        --radius-sm: 10px;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        font-size: 16px;
+      }
+
+      body {
+        font-family: "DM Sans", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        line-height: 1.7;
+        min-height: 100vh;
+      }
+
+      /* ── HEADER ── */
+      header {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: rgba(245, 244, 240, 0.92);
+        backdrop-filter: blur(14px);
+        border-bottom: 1px solid var(--border);
+        padding: 0 clamp(1rem, 5vw, 3rem);
+      }
+
+      .header-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 60px;
+        gap: 1rem;
+      }
+
+      .header-brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+        flex-shrink: 0;
+      }
+
+      .brand-logo {
+        width: 36px;
+        height: 36px;
+        border-radius: 12px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .brand-icon {
+        width: 34px;
+        height: 34px;
+        background: var(--accent);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 18px;
+      }
+
+      .brand-text {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(0.85rem, 2vw, 1rem);
+        font-weight: 700;
+        color: var(--ink);
+        line-height: 1.1;
+      }
+
+      .brand-text span {
+        display: block;
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.65rem;
+        font-weight: 500;
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+      }
+
+      .header-badge {
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 600;
+        padding: 4px 10px;
+        border-radius: 20px;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+
+      /* ── HERO ── */
+      .hero {
+        background: linear-gradient(
+          135deg,
+          #0f1117 0%,
+          #1a2035 50%,
+          #0d1525 100%
+        );
+        color: #fff;
+        padding: clamp(3rem, 8vw, 6rem) clamp(1rem, 5vw, 3rem);
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          radial-gradient(
+            ellipse at 70% 50%,
+            rgba(192, 57, 43, 0.25) 0%,
+            transparent 65%
+          ),
+          radial-gradient(
+            ellipse at 10% 80%,
+            rgba(26, 107, 181, 0.2) 0%,
+            transparent 55%
+          );
+      }
+
+      .hero-grid {
+        position: absolute;
+        inset: 0;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 40px 40px;
+      }
+
+      .hero-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: rgba(192, 57, 43, 0.25);
+        border: 1px solid rgba(192, 57, 43, 0.5);
+        color: #f08070;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        padding: 5px 12px;
+        border-radius: 20px;
+        margin-bottom: 1.25rem;
+      }
+
+      .hero h1 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.8rem, 5.5vw, 3.6rem);
+        font-weight: 900;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        letter-spacing: -0.02em;
+      }
+
+      .hero h1 em {
+        font-style: normal;
+        color: #e8624e;
+      }
+
+      .hero-sub {
+        font-size: clamp(0.95rem, 2vw, 1.1rem);
+        color: rgba(255, 255, 255, 0.65);
+        max-width: 600px;
+        margin-bottom: 2rem;
+      }
+
+      .hero-stats {
+        display: flex;
+        gap: clamp(1rem, 4vw, 2.5rem);
+        flex-wrap: wrap;
+      }
+
+      .hero-stat {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .stat-number {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.6rem, 4vw, 2.4rem);
+        font-weight: 900;
+        color: #e8624e;
+        line-height: 1;
+      }
+
+      .stat-label {
+        font-size: 0.75rem;
+        color: rgba(255, 255, 255, 0.5);
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        margin-top: 3px;
+      }
+
+      /* ── LAYOUT ── */
+      .container {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 clamp(1rem, 5vw, 3rem);
+      }
+
+      main {
+        padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 5vw, 3rem);
+      }
+
+      .main-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      /* ── QUICK NAV ── */
+      .quick-nav {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: clamp(1.25rem, 3vw, 2rem);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .quick-nav h2 {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        color: var(--ink);
+      }
+
+      .nav-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(200px, 100%), 1fr));
+        gap: 0.5rem;
+      }
+
+      .nav-link {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 12px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        color: var(--ink-light);
+        font-size: 0.82rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+      }
+
+      .nav-link:hover {
+        background: var(--accent-light);
+        border-color: var(--accent);
+        color: var(--accent);
+        transform: translateY(-1px);
+        box-shadow: var(--shadow-sm);
+      }
+
+      .nav-num {
+        width: 20px;
+        height: 20px;
+        background: var(--accent);
+        color: #fff;
+        border-radius: 50%;
+        font-size: 0.65rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+      }
+
+      /* ── SECTION CARDS ── */
+      .section-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: clamp(1.5rem, 4vw, 2.5rem);
+        box-shadow: var(--shadow-sm);
+        transition: box-shadow 0.3s ease;
+      }
+
+      .section-card:hover {
+        box-shadow: var(--shadow-md);
+      }
+
+      .section-header {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.25rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .section-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        display: grid;
+        place-items: center;
+        font-size: 1.3rem;
+        flex-shrink: 0;
+      }
+
+      .icon-red {
+        background: var(--accent-light);
+      }
+      .icon-blue {
+        background: var(--accent-blue-light);
+      }
+      .icon-gold {
+        background: var(--accent-gold-light);
+      }
+      .icon-green {
+        background: var(--accent-green-light);
+      }
+
+      .section-title-block h2 {
+        font-family: "Playfair Display", serif;
+        font-size: clamp(1.2rem, 3vw, 1.55rem);
+        font-weight: 700;
+        line-height: 1.2;
+        color: var(--ink);
+      }
+
+      .section-title-block p {
+        font-size: 0.82rem;
+        color: var(--ink-muted);
+        margin-top: 3px;
+      }
+
+      /* ── PRO TIP ── */
+      .pro-tip {
+        background: linear-gradient(135deg, #fff8e6, #fff3d6);
+        border: 1px solid #e8c84a;
+        border-left: 4px solid var(--accent-gold);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        margin: 1.25rem 0;
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .pro-tip-icon {
+        font-size: 1.1rem;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      .pro-tip-content strong {
+        display: block;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: #9a6f00;
+        margin-bottom: 3px;
+        font-weight: 600;
+      }
+
+      .pro-tip-content p {
+        font-size: 0.88rem;
+        color: #5a4000;
+        line-height: 1.55;
+      }
+
+      /* ── HIGHLIGHT BOX ── */
+      .highlight-box {
+        background: var(--accent-light);
+        border: 1px solid #f0c0bb;
+        border-left: 4px solid var(--accent);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .highlight-box p,
+      .highlight-box li {
+        font-size: 0.88rem;
+        color: #6a1a10;
+      }
+
+      /* ── BLUE BOX ── */
+      .info-box {
+        background: var(--accent-blue-light);
+        border: 1px solid #b0cfee;
+        border-left: 4px solid var(--accent-blue);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .info-box p,
+      .info-box li {
+        font-size: 0.88rem;
+        color: #0d3a6a;
+      }
+
+      /* ── GREEN BOX ── */
+      .success-box {
+        background: var(--accent-green-light);
+        border: 1px solid #a0d8b8;
+        border-left: 4px solid var(--accent-green);
+        border-radius: var(--radius-sm);
+        padding: 1rem 1.25rem;
+        margin: 1.25rem 0;
+      }
+
+      .success-box p,
+      .success-box li {
+        font-size: 0.88rem;
+        color: #0a3d22;
+      }
+
+      /* ── LISTS ── */
+      ul.styled,
+      ol.styled {
+        padding-left: 0;
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+        margin: 0.75rem 0;
+      }
+
+      ul.styled li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.91rem;
+        color: var(--ink-light);
+        line-height: 1.55;
+      }
+
+      ul.styled li::before {
+        content: "→";
+        color: var(--accent);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      ol.styled {
+        counter-reset: item;
+      }
+      ol.styled li {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        font-size: 0.91rem;
+        color: var(--ink-light);
+        line-height: 1.55;
+        counter-increment: item;
+      }
+      ol.styled li::before {
+        content: counter(item);
+        background: var(--accent);
+        color: #fff;
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        font-size: 0.7rem;
+        font-weight: 700;
+        display: grid;
+        place-items: center;
+        flex-shrink: 0;
+        margin-top: 1px;
+      }
+
+      p.body-text {
+        font-size: clamp(0.88rem, 2vw, 0.95rem);
+        color: var(--ink-light);
+        line-height: 1.75;
+        margin-bottom: 0.85rem;
+      }
+
+      h3.sub-heading {
+        font-family: "Playfair Display", serif;
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin: 1.5rem 0 0.75rem;
+      }
+
+      /* ── CHAPTER GRID ── */
+      .chapter-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .chapter-card {
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        padding: 1.1rem 1.25rem;
+        transition: all 0.2s ease;
+      }
+
+      .chapter-card:hover {
+        transform: translateY(-2px);
+        box-shadow: var(--shadow-sm);
+        border-color: var(--accent);
+      }
+
+      .chapter-card-header {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 0.6rem;
+      }
+
+      .chapter-tag {
+        font-size: 0.72rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.07em;
+        padding: 2px 8px;
+        border-radius: 4px;
+      }
+
+      .tag-high {
+        background: #fde8e8;
+        color: var(--accent);
+      }
+      .tag-med {
+        background: var(--accent-gold-light);
+        color: #8a5a00;
+      }
+      .tag-all {
+        background: var(--accent-blue-light);
+        color: var(--accent-blue);
+      }
+
+      .chapter-card h3 {
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--ink);
+      }
+
+      .chapter-card ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+
+      .chapter-card ul li {
+        font-size: 0.8rem;
+        color: var(--ink-muted);
+        padding-left: 14px;
+        position: relative;
+        line-height: 1.5;
+      }
+
+      .chapter-card ul li::before {
+        content: "·";
+        position: absolute;
+        left: 4px;
+        color: var(--accent);
+        font-weight: 900;
+      }
+
+      /* ── STUDY PLAN TABLE ── */
+      .plan-grid {
+        display: grid;
+        gap: 1rem;
+        margin: 1.25rem 0;
+      }
+
+      .plan-month {
+        border: 1px solid var(--border);
+        border-radius: var(--radius-sm);
+        overflow: hidden;
+      }
+
+      .plan-month-header {
+        padding: 0.85rem 1.25rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .plan-month-header h3 {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: #fff;
+      }
+
+      .plan-month-header .month-badge {
+        background: rgba(255, 255, 255, 0.2);
+        color: #fff;
+        font-size: 0.7rem;
+        padding: 3px 10px;
+        border-radius: 20px;
+        font-weight: 600;
+        white-space: nowrap;
+      }
+
+      .header-m1 {
+        background: linear-gradient(135deg, #1a2035, #2a3a5e);
+      }
+      .header-m2 {
+        background: linear-gradient(135deg, #8a2010, #c0392b);
+      }
+      .header-m3 {
+        background: linear-gradient(135deg, #1a5a2a, #27ae60);
+      }
+      .header-rev {
+        background: linear-gradient(135deg, #5a4000, #d4a017);
+      }
+
+      .plan-month-body {
+        padding: 1rem 1.25rem;
+        background: var(--bg-card);
+      }
+
+      .plan-month-body ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+      }
+
+      .plan-month-body ul li {
+        font-size: 0.85rem;
+        color: var(--ink-light);
+        display: flex;
+        gap: 8px;
+        align-items: flex-start;
+        line-height: 1.5;
+      }
+
+      .plan-month-body ul li::before {
+        content: "✓";
+        color: var(--accent-green);
+        font-weight: 700;
+        flex-shrink: 0;
+      }
+
+      /* ── CHECKLIST ── */
+      .checklist-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+      }
+
+      .checklist-item {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 10px 14px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      .checklist-item:hover {
+        border-color: var(--accent-green);
+        background: var(--accent-green-light);
+      }
+
+      .checklist-item.checked {
+        background: var(--accent-green-light);
+        border-color: var(--accent-green);
+      }
+
+      .checklist-item.checked .check-box {
+        background: var(--accent-green);
+        border-color: var(--accent-green);
+      }
+
+      .checklist-item.checked .check-box::after {
+        opacity: 1;
+      }
+
+      .check-box {
+        width: 20px;
+        height: 20px;
+        border: 2px solid var(--border);
+        border-radius: 5px;
+        flex-shrink: 0;
+        position: relative;
+        transition: all 0.2s ease;
+        background: #fff;
+      }
+
+      .check-box::after {
+        content: "✓";
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        font-size: 0.7rem;
+        font-weight: 900;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+      }
+
+      .checklist-item span {
+        font-size: 0.82rem;
+        color: var(--ink-light);
+        line-height: 1.4;
+      }
+
+      .checklist-item.checked span {
+        color: var(--accent-green);
+        font-weight: 500;
+      }
+
+      .checklist-progress {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 1rem;
+        flex-wrap: wrap;
+      }
+
+      .progress-bar-wrap {
+        flex: 1;
+        min-width: 100px;
+        height: 8px;
+        background: var(--border);
+        border-radius: 8px;
+        overflow: hidden;
+      }
+
+      .progress-bar-fill {
+        height: 100%;
+        background: linear-gradient(90deg, var(--accent-green), #52be80);
+        border-radius: 8px;
+        transition: width 0.4s ease;
+        width: 0%;
+      }
+
+      .progress-text {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--accent-green);
+        white-space: nowrap;
+      }
+
+      /* ── MISTAKES ── */
+      .mistakes-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+      }
+
+      .mistake-item {
+        background: #fff5f5;
+        border: 1px solid #f5c0bb;
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .mistake-item .mistake-icon {
+        font-size: 1.4rem;
+        margin-bottom: 0.4rem;
+      }
+
+      .mistake-item h4 {
+        font-size: 0.88rem;
+        font-weight: 700;
+        color: var(--accent);
+        margin-bottom: 0.3rem;
+      }
+
+      .mistake-item p {
+        font-size: 0.78rem;
+        color: #7a3020;
+        line-height: 1.5;
+      }
+
+      /* ── EXAM STRATEGY ── */
+      .strategy-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        margin: 1.25rem 0;
+      }
+
+      .strategy-step {
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+        background: var(--bg);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 1rem;
+      }
+
+      .step-time {
+        background: var(--accent);
+        color: #fff;
+        font-size: 0.72rem;
+        font-weight: 700;
+        padding: 4px 10px;
+        border-radius: 20px;
+        white-space: nowrap;
+        flex-shrink: 0;
+        height: fit-content;
+        margin-top: 1px;
+      }
+
+      .step-content h4 {
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--ink);
+        margin-bottom: 3px;
+      }
+
+      .step-content p {
+        font-size: 0.82rem;
+        color: var(--ink-muted);
+        line-height: 1.5;
+      }
+
+      /* ── WATERMARK ── */
+      .watermark-strip {
+        background: linear-gradient(135deg, #0f1117 0%, #1a2035 100%);
+        padding: 1rem clamp(1rem, 5vw, 3rem);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 12px;
+      }
+
+      .watermark-logo {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        text-decoration: none;
+      }
+
+      .wm-icon {
+        width: 32px;
+        height: 32px;
+        background: linear-gradient(135deg, #c0392b, #e74c3c);
+        border-radius: 8px;
+        display: grid;
+        place-items: center;
+        font-size: 16px;
+      }
+
+      .footer-logo-img {
+        width: 28px;
+        height: 28px;
+        border-radius: 10px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .wm-text {
+        font-family: "Playfair Display", serif;
+        font-size: 1rem;
+        font-weight: 700;
+        color: #fff;
+        letter-spacing: -0.01em;
+      }
+
+      .wm-text span {
+        color: #e8624e;
+      }
+
+      .wm-tagline {
+        font-size: 0.7rem;
+        color: rgba(255, 255, 255, 0.45);
+        font-weight: 400;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+      }
+
+      /* ── FOOTER ── */
+      footer {
+        background: #0f1117;
+        color: rgba(255, 255, 255, 0.5);
+        text-align: center;
+        padding: 1.25rem clamp(1rem, 5vw, 3rem);
+        font-size: 0.78rem;
+      }
+
+      footer a {
+        color: #e8624e;
+        text-decoration: none;
+      }
+
+      /* ── DIVIDER ── */
+      .divider {
+        height: 1px;
+        background: var(--border);
+        margin: 0.5rem 0;
+      }
+
+      /* ── RESPONSIVE ── */
+      @media (max-width: 640px) {
+        .hero-stats {
+          gap: 1.25rem;
+        }
+        .chapter-grid {
+          grid-template-columns: 1fr;
+        }
+        .checklist-grid {
+          grid-template-columns: 1fr;
+        }
+        .mistakes-grid {
+          grid-template-columns: 1fr;
+        }
+        .strategy-step {
+          flex-direction: column;
+          gap: 8px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- HEADER -->
+    <header>
+      <div class="header-inner">
+        <a class="header-brand" href="../blog.html">
+          <img
+            src="../../public/favicon.png"
+            alt="EduBoost Nepal Logo"
+            class="brand-logo"
+          />
+          <div class="brand-text">
+            EduBoost Nepal
+            <span>NEB Study Resource</span>
+          </div>
+        </a>
+        <div class="header-badge">Class 12 Guide</div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-inner">
+        <div class="hero-tag">⚛️ NEB Physics · Class 12 · Nepal</div>
+        <h1>How to Score <em>90+</em> in<br />NEB Physics</h1>
+        <p class="hero-sub">
+          A no-nonsense topper's guide built specifically for NEB Class 12
+          students. Real strategies, no fluff.
+        </p>
+        <div class="hero-stats">
+          <div class="hero-stat">
+            <span class="stat-number">13</span>
+            <span class="stat-label">Sections</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">90+</span>
+            <span class="stat-label">Target Score</span>
+          </div>
+          <div class="hero-stat">
+            <span class="stat-number">3mo</span>
+            <span class="stat-label">Study Plan</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MAIN -->
+    <main>
+      <div class="main-inner">
+        <!-- QUICK NAV -->
+        <div class="quick-nav" id="top">
+          <h2>📋 Quick Navigation</h2>
+          <div class="nav-grid">
+            <a href="#why-low" class="nav-link"
+              ><span class="nav-num">1</span> Why Students Score Low</a
+            >
+            <a href="#mindset" class="nav-link"
+              ><span class="nav-num">2</span> Topper Mindset</a
+            >
+            <a href="#chapters" class="nav-link"
+              ><span class="nav-num">3</span> Chapter-wise Strategy</a
+            >
+            <a href="#numerical" class="nav-link"
+              ><span class="nav-num">4</span> Numerical Problems</a
+            >
+            <a href="#theory" class="nav-link"
+              ><span class="nav-num">5</span> Theory & Derivations</a
+            >
+            <a href="#past-questions" class="nav-link"
+              ><span class="nav-num">6</span> Past Questions</a
+            >
+            <a href="#3month" class="nav-link"
+              ><span class="nav-num">7</span> 3-Month Plan</a
+            >
+            <a href="#1month" class="nav-link"
+              ><span class="nav-num">8</span> 1-Month Revision</a
+            >
+            <a href="#lastweek" class="nav-link"
+              ><span class="nav-num">9</span> Last Week</a
+            >
+            <a href="#examhall" class="nav-link"
+              ><span class="nav-num">10</span> Exam Hall Strategy</a
+            >
+            <a href="#mistakes" class="nav-link"
+              ><span class="nav-num">11</span> Common Mistakes</a
+            >
+            <a href="#checklist" class="nav-link"
+              ><span class="nav-num">12</span> 90+ Checklist</a
+            >
+          </div>
+        </div>
+
+        <!-- INTRO -->
+        <div class="section-card">
+          <div class="section-header">
+            <div class="section-icon icon-red">🎯</div>
+            <div class="section-title-block">
+              <h2>Introduction</h2>
+              <p>Why this guide exists</p>
+            </div>
+          </div>
+          <p class="body-text">
+            Physics is the subject that separates average students from toppers
+            in NEB. Most students fear it. Toppers use it to boost their overall
+            percentage.
+          </p>
+          <p class="body-text">
+            The truth?
+            <strong>NEB Physics is not hard — it is just misunderstood.</strong>
+            With the right strategy, any student can cross 90. This guide tells
+            you exactly what to do, week by week, chapter by chapter.
+          </p>
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Physics rewards understanding over memorization. If you
+                understand the logic, you can solve any question — even ones you
+                have never seen before.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- WHY LOW -->
+        <div class="section-card" id="why-low">
+          <div class="section-header">
+            <div class="section-icon icon-red">📉</div>
+            <div class="section-title-block">
+              <h2>Why Most Students Score Low</h2>
+              <p>Identify and fix the real problems first</p>
+            </div>
+          </div>
+          <div class="mistakes-grid">
+            <div class="mistake-item">
+              <div class="mistake-icon">📚</div>
+              <h4>Copy-paste studying</h4>
+              <p>
+                Writing answers without understanding why the formula works.
+                Then forgetting everything in 2 days.
+              </p>
+            </div>
+            <div class="mistake-item">
+              <div class="mistake-icon">🔢</div>
+              <h4>Avoiding numericals</h4>
+              <p>
+                Skipping numerical practice because it feels hard. Numericals
+                are 40–50% of your marks.
+              </p>
+            </div>
+            <div class="mistake-item">
+              <div class="mistake-icon">📋</div>
+              <h4>Ignoring past papers</h4>
+              <p>
+                Not solving old NEB questions. The same question types repeat
+                every year. You are leaving free marks.
+              </p>
+            </div>
+            <div class="mistake-item">
+              <div class="mistake-icon">⏰</div>
+              <h4>Starting too late</h4>
+              <p>
+                Cramming 2 weeks before exam. Physics needs time to build
+                understanding, not memorization.
+              </p>
+            </div>
+            <div class="mistake-item">
+              <div class="mistake-icon">📝</div>
+              <h4>No derivation practice</h4>
+              <p>
+                Reading derivations without writing them. You must write it
+                yourself at least 3 times to remember.
+              </p>
+            </div>
+            <div class="mistake-item">
+              <div class="mistake-icon">🎯</div>
+              <h4>No unit awareness</h4>
+              <p>
+                Forgetting units in numerical answers. NEB examiners deduct
+                marks for missing or wrong units.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MINDSET -->
+        <div class="section-card" id="mindset">
+          <div class="section-header">
+            <div class="section-icon icon-gold">🧠</div>
+            <div class="section-title-block">
+              <h2>High-Scoring Strategy: Topper Mindset</h2>
+              <p>How toppers think differently</p>
+            </div>
+          </div>
+          <p class="body-text">
+            Toppers do not study harder — they study smarter. Here is the exact
+            mindset shift you need:
+          </p>
+
+          <h3 class="sub-heading">The 3-Layer Approach</h3>
+          <ol class="styled">
+            <li>
+              <strong>Understand first.</strong> Before reading any chapter,
+              ask: "What is this chapter really about?" Read the introduction.
+              Know the big idea.
+            </li>
+            <li>
+              <strong>Formula with meaning.</strong> Do not just memorize F =
+              ma. Know that it means: force is what causes acceleration in a
+              mass. Write the formula. Draw a diagram. Link it to real life.
+            </li>
+            <li>
+              <strong>Apply immediately.</strong> After reading a concept,
+              immediately solve 2–3 numericals on it. Do not wait until exam
+              time.
+            </li>
+          </ol>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Toppers solve the same numerical 3 times: once with help, once
+                alone, once explaining it out loud. If you can explain it, you
+                own it.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">What to prioritize</h3>
+          <ul class="styled">
+            <li>
+              <strong>High-weight chapters first</strong> — Mechanics,
+              Electricity, Modern Physics carry the most marks
+            </li>
+            <li>
+              <strong>Past questions before new exercises</strong> — NEB repeats
+              60–70% of question patterns
+            </li>
+            <li>
+              <strong>One subject per day, not many</strong> — deep focus beats
+              scattered revision
+            </li>
+            <li>
+              <strong>Write, don't just read</strong> — writing activates memory
+              3× more than passive reading
+            </li>
+          </ul>
+
+          <div class="highlight-box">
+            <p>
+              <strong>Daily routine of a 90+ student:</strong> 2 hours concept
+              study → 1 hour numerical practice → 30 min past question review.
+              That is 3.5 hours/day. Consistent. No exceptions.
+            </p>
+          </div>
+        </div>
+
+        <!-- CHAPTERS -->
+        <div class="section-card" id="chapters">
+          <div class="section-header">
+            <div class="section-icon icon-blue">📖</div>
+            <div class="section-title-block">
+              <h2>Chapter-wise Strategy</h2>
+              <p>Exactly what to focus on in each chapter</p>
+            </div>
+          </div>
+          <p class="body-text">
+            Not all chapters are equal. Here is what to prioritize in each:
+          </p>
+          <div class="chapter-grid">
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-high">High Priority</span>
+              </div>
+              <h3>⚙️ Mechanics</h3>
+              <ul>
+                <li>Newton's laws — know all 3 by heart with applications</li>
+                <li>Work, energy, power — numerical heavy. Practice daily</li>
+                <li>Circular motion — formulas + derivations both asked</li>
+                <li>Gravity — derive g variation formula</li>
+                <li>Projectile — the 6 standard equations must be automatic</li>
+              </ul>
+            </div>
+
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-high">High Priority</span>
+              </div>
+              <h3>⚡ Electricity & Magnetism</h3>
+              <ul>
+                <li>Ohm's law, Kirchhoff's laws — always in exam</li>
+                <li>Capacitors — series/parallel derivations</li>
+                <li>EMF and internal resistance — numerical favorite</li>
+                <li>Magnetic force on conductor — F = BIL derivation</li>
+                <li>AC circuits — impedance, resonance numericals</li>
+              </ul>
+            </div>
+
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-high">High Priority</span>
+              </div>
+              <h3>☢️ Modern Physics</h3>
+              <ul>
+                <li>
+                  Photoelectric effect — Einstein's equation, stopping potential
+                </li>
+                <li>Bohr's model — energy levels, hydrogen spectrum</li>
+                <li>Radioactivity — decay law, half-life numerical</li>
+                <li>Nuclear reactions — Q-value calculation</li>
+                <li>X-rays — Moseley's law, properties</li>
+              </ul>
+            </div>
+
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-med">Medium Priority</span>
+              </div>
+              <h3>🌊 Waves & Optics</h3>
+              <ul>
+                <li>Interference — Young's double slit derivation</li>
+                <li>Diffraction — grating formula</li>
+                <li>Lens formula — numerical + ray diagrams</li>
+                <li>Doppler effect — both sound and light</li>
+                <li>Standing waves — open/closed pipe modes</li>
+              </ul>
+            </div>
+
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-med">Medium Priority</span>
+              </div>
+              <h3>🌡️ Heat & Thermodynamics</h3>
+              <ul>
+                <li>Laws of thermodynamics — all four, with examples</li>
+                <li>Carnot engine — efficiency formula derivation</li>
+                <li>Specific heat capacity — calorimetry numericals</li>
+                <li>Gas laws — PV = nRT numerical applications</li>
+              </ul>
+            </div>
+
+            <div class="chapter-card">
+              <div class="chapter-card-header">
+                <span class="chapter-tag tag-all">All Questions</span>
+              </div>
+              <h3>🔬 Solid State & Semiconductor</h3>
+              <ul>
+                <li>P-N junction — forward/reverse bias diagrams</li>
+                <li>Transistor — characteristics, common emitter</li>
+                <li>Logic gates — truth tables, simple circuits</li>
+                <li>Crystal structure — unit cell types</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Make a formula sheet for each chapter. One A4 page maximum.
+                Write all formulas, constants, and important conditions. Revise
+                this sheet daily for the last month.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- NUMERICAL -->
+        <div class="section-card" id="numerical">
+          <div class="section-header">
+            <div class="section-icon icon-blue">🔢</div>
+            <div class="section-title-block">
+              <h2>Numerical Problem Strategy</h2>
+              <p>How to never lose marks in numericals</p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">The DUFSA Method — Use Every Time</h3>
+          <ol class="styled">
+            <li>
+              <strong>D — Data:</strong> Write all given values with units.
+              Circle what is asked.
+            </li>
+            <li>
+              <strong>U — Unit conversion:</strong> Convert everything to SI
+              units before solving.
+            </li>
+            <li>
+              <strong>F — Formula:</strong> Write the exact formula. Do not skip
+              this step.
+            </li>
+            <li>
+              <strong>S — Substitute:</strong> Put numbers into the formula
+              carefully.
+            </li>
+            <li>
+              <strong>A — Answer:</strong> Calculate and write with correct unit
+              and significant figures.
+            </li>
+          </ol>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Even if you get the wrong final answer, you get partial marks
+                for correct formula, correct substitution, and correct unit.
+                Never leave a numerical blank.
+              </p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">Most Repeated Numerical Types</h3>
+          <ul class="styled">
+            <li>Projectile motion — range, maximum height, time of flight</li>
+            <li>Circular motion — centripetal force, period</li>
+            <li>
+              Ohm's law + Kirchhoff's — finding current/resistance in circuit
+            </li>
+            <li>Half-life and radioactive decay</li>
+            <li>Photoelectric effect — threshold frequency, kinetic energy</li>
+            <li>Lens + mirror — image position, magnification</li>
+            <li>Capacitor — charge, energy stored, equivalent capacitance</li>
+          </ul>
+
+          <div class="info-box">
+            <p>
+              <strong>Practice rule:</strong> Solve minimum 5 numericals per
+              chapter from past NEB questions. Then solve 5 more from your
+              textbook exercise. That is 10 per chapter — more than enough.
+            </p>
+          </div>
+        </div>
+
+        <!-- THEORY -->
+        <div class="section-card" id="theory">
+          <div class="section-header">
+            <div class="section-icon icon-gold">✍️</div>
+            <div class="section-title-block">
+              <h2>Theory & Derivation Strategy</h2>
+              <p>Write it to remember it</p>
+            </div>
+          </div>
+
+          <p class="body-text">
+            Theory and derivations are predictable. NEB asks the same ones every
+            year. Master these and you will not lose a single mark in this
+            section.
+          </p>
+
+          <h3 class="sub-heading">How to Study a Derivation</h3>
+          <ol class="styled">
+            <li><strong>Read once</strong> — understand the logic and steps</li>
+            <li>
+              <strong>Close the book</strong> — try to reproduce it from memory
+            </li>
+            <li><strong>Check and correct</strong> — compare with the book</li>
+            <li>
+              <strong>Write it again 24 hours later</strong> — this fixes it
+              permanently
+            </li>
+          </ol>
+
+          <h3 class="sub-heading">Must-Know Derivations (NEB Favorites)</h3>
+          <ul class="styled">
+            <li>Equations of motion (v = u + at, s = ut + ½at²)</li>
+            <li>Work-energy theorem</li>
+            <li>Escape velocity</li>
+            <li>Capacitor in series and parallel</li>
+            <li>Force on a current-carrying conductor (F = BIL)</li>
+            <li>Einstein's photoelectric equation</li>
+            <li>Bohr's model — radius and energy of nth orbit</li>
+            <li>Young's double slit fringe width formula</li>
+            <li>Efficiency of Carnot engine</li>
+          </ul>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                For theory questions, use this structure: Definition →
+                Explanation → Formula → Example/Application. Examiners reward
+                organized answers. Always label diagrams clearly.
+              </p>
+            </div>
+          </div>
+
+          <div class="highlight-box">
+            <p>
+              <strong>Diagram rule:</strong> Every theory answer that has a
+              diagram should have one. A clear, labeled diagram can earn you 1–2
+              extra marks even if your explanation is slightly incomplete.
+            </p>
+          </div>
+        </div>
+
+        <!-- PAST QUESTIONS -->
+        <div class="section-card" id="past-questions">
+          <div class="section-header">
+            <div class="section-icon icon-green">📰</div>
+            <div class="section-title-block">
+              <h2>How to Use Past Questions Effectively</h2>
+              <p>Your most powerful study weapon</p>
+            </div>
+          </div>
+
+          <p class="body-text">
+            NEB past questions are not just practice — they are a cheat sheet.
+            NEB repeats 60–70% of question patterns every year. If you solve 5
+            years of past papers, you will recognize most questions in your
+            exam.
+          </p>
+
+          <h3 class="sub-heading">The Right Way to Use Past Papers</h3>
+          <ol class="styled">
+            <li>
+              <strong>Do NOT use as first study.</strong> Study the chapter
+              first. Then solve past questions.
+            </li>
+            <li>
+              <strong>Categorize by type.</strong> Group questions: numerical,
+              derivation, theory. See which appears most.
+            </li>
+            <li>
+              <strong>Mark frequency.</strong> Questions asked 3+ years in a row
+              are almost guaranteed. Give them special attention.
+            </li>
+            <li>
+              <strong>Time yourself.</strong> In the last month, solve full
+              papers in 3 hours under exam conditions.
+            </li>
+            <li>
+              <strong>Review mistakes.</strong> Wrong answers are more valuable
+              than right ones. Go back and fix every mistake.
+            </li>
+          </ol>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Collect last 10 years' NEB question papers. After solving each,
+                make a list of questions you could not answer. These become your
+                personal high-priority study list.
+              </p>
+            </div>
+          </div>
+
+          <div class="info-box">
+            <p>
+              <strong>Target:</strong> Solve past papers from 2015 to present.
+              Pay special attention to 2020–2024. These are the most relevant to
+              current syllabus and marking scheme.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3-MONTH PLAN -->
+        <div class="section-card" id="3month">
+          <div class="section-header">
+            <div class="section-icon icon-blue">📅</div>
+            <div class="section-title-block">
+              <h2>3-Month Study Plan</h2>
+              <p>Week-by-week breakdown to build mastery</p>
+            </div>
+          </div>
+
+          <div class="plan-grid">
+            <div class="plan-month">
+              <div class="plan-month-header header-m1">
+                <h3>📘 Month 1 — Foundation</h3>
+                <span class="month-badge">Understand Everything</span>
+              </div>
+              <div class="plan-month-body">
+                <ul>
+                  <li>
+                    Week 1–2: Mechanics (all sub-topics) — read, understand, 5
+                    numericals/day
+                  </li>
+                  <li>
+                    Week 3: Waves & Optics — focus on derivations and ray
+                    diagrams
+                  </li>
+                  <li>Week 4: Heat & Thermodynamics — laws + Carnot engine</li>
+                  <li>
+                    Daily: 30 minutes formula writing. No calculator dependence.
+                  </li>
+                  <li>
+                    Weekend: Solve 5 past NEB questions from topics covered that
+                    week
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="plan-month">
+              <div class="plan-month-header header-m2">
+                <h3>📗 Month 2 — Application</h3>
+                <span class="month-badge">Solve Problems</span>
+              </div>
+              <div class="plan-month-body">
+                <ul>
+                  <li>
+                    Week 1–2: Electricity & Magnetism — circuits, Kirchhoff's
+                    laws, AC circuits
+                  </li>
+                  <li>
+                    Week 3: Modern Physics — photoelectric effect, Bohr's model,
+                    radioactivity
+                  </li>
+                  <li>
+                    Week 4: Semiconductor & Solid State — logic gates, P-N
+                    junction
+                  </li>
+                  <li>
+                    Daily: Minimum 10 numericals across current chapter +
+                    previous chapters
+                  </li>
+                  <li>
+                    Weekend: Full chapter revision + 10 past questions from that
+                    chapter
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="plan-month">
+              <div class="plan-month-header header-m3">
+                <h3>📙 Month 3 — Mastery</h3>
+                <span class="month-badge">Full Revision</span>
+              </div>
+              <div class="plan-month-body">
+                <ul>
+                  <li>
+                    Week 1: Full revision of Mechanics + Electricity
+                    (high-weight chapters)
+                  </li>
+                  <li>Week 2: Full revision of Modern Physics + Optics</li>
+                  <li>
+                    Week 3: Solve 3 complete past papers (timed, under exam
+                    conditions)
+                  </li>
+                  <li>
+                    Week 4: Target weak areas identified from past paper
+                    mistakes
+                  </li>
+                  <li>
+                    Daily: Revise formula sheet. Solve 15 mixed numericals.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 1-MONTH REVISION -->
+        <div class="section-card" id="1month">
+          <div class="section-header">
+            <div class="section-icon icon-gold">🔄</div>
+            <div class="section-title-block">
+              <h2>1-Month Revision Plan</h2>
+              <p>When exam is 4 weeks away</p>
+            </div>
+          </div>
+
+          <div class="plan-grid">
+            <div class="plan-month">
+              <div class="plan-month-header header-rev">
+                <h3>⚡ Revision Mode</h3>
+                <span class="month-badge">4 Weeks to Exam</span>
+              </div>
+              <div class="plan-month-body">
+                <ul>
+                  <li>
+                    <strong>Week 1:</strong> Revise all derivations. Write each
+                    one from memory. Check and correct.
+                  </li>
+                  <li>
+                    <strong>Week 2:</strong> Solve 2 full NEB past papers.
+                    Review every wrong answer carefully.
+                  </li>
+                  <li>
+                    <strong>Week 3:</strong> Focus only on weak chapters. Do
+                    targeted numerical practice.
+                  </li>
+                  <li>
+                    <strong>Week 4:</strong> Revise formula sheets daily. Solve
+                    20 mixed numericals/day. Sleep 8 hours.
+                  </li>
+                  <li>
+                    Stop learning new topics in Week 3. Only revise what you
+                    already know.
+                  </li>
+                  <li>
+                    Practice writing answers fast but neat. Examiners prefer
+                    clarity.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                In the last month, write the answer to every question before
+                checking the solution. Attempting is more valuable than
+                passively reading answers. Your brain learns through struggle,
+                not comfort.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- LAST WEEK -->
+        <div class="section-card" id="lastweek">
+          <div class="section-header">
+            <div class="section-icon icon-red">🏁</div>
+            <div class="section-title-block">
+              <h2>Last Week Strategy</h2>
+              <p>Days 1–7 before the exam</p>
+            </div>
+          </div>
+
+          <div class="strategy-steps">
+            <div class="strategy-step">
+              <span class="step-time">Day 7</span>
+              <div class="step-content">
+                <h4>Full chapter review</h4>
+                <p>
+                  Read all chapter summaries. Do not study new topics. Revise
+                  formula sheets. Solve 10 numericals.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 6</span>
+              <div class="step-content">
+                <h4>Derivations day</h4>
+                <p>
+                  Write all must-know derivations once from memory. Fix
+                  mistakes. Do this in one 3-hour sitting.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 5</span>
+              <div class="step-content">
+                <h4>Mock paper day</h4>
+                <p>
+                  Solve one complete past paper in 3 hours. Mark it. Identify
+                  last gaps.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 4</span>
+              <div class="step-content">
+                <h4>Gap filling</h4>
+                <p>
+                  Focus only on topics/types where you lost marks in Day 5's
+                  mock. Do targeted practice.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 3</span>
+              <div class="step-content">
+                <h4>Light revision</h4>
+                <p>
+                  Revise formula sheet. Revise important definitions. No heavy
+                  studying. Sleep by 10 PM.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 2</span>
+              <div class="step-content">
+                <h4>Confidence day</h4>
+                <p>
+                  Quickly revise things you are strong in. This builds
+                  confidence, not new knowledge. Rest well.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">Day 1 (Eve)</span>
+              <div class="step-content">
+                <h4>Prepare, don't study</h4>
+                <p>
+                  Pack your pencil, pen, ruler, calculator, admit card. Eat
+                  well. Sleep 8–9 hours. No late-night cramming.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EXAM HALL -->
+        <div class="section-card" id="examhall">
+          <div class="section-header">
+            <div class="section-icon icon-green">🏫</div>
+            <div class="section-title-block">
+              <h2>Exam Hall Strategy</h2>
+              <p>How to perform under pressure and maximize every mark</p>
+            </div>
+          </div>
+
+          <h3 class="sub-heading">First 5 Minutes</h3>
+          <ul class="styled">
+            <li>Read the full question paper before writing anything</li>
+            <li>Mark questions you are confident about — answer these first</li>
+            <li>Estimate time: 3 hours = 180 mins. Plan accordingly</li>
+          </ul>
+
+          <h3 class="sub-heading">During the Exam</h3>
+          <div class="strategy-steps">
+            <div class="strategy-step">
+              <span class="step-time">0–15 min</span>
+              <div class="step-content">
+                <h4>Read & Plan</h4>
+                <p>
+                  Read all questions. Decide which ones to answer first. Star
+                  the easy ones.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">15–90 min</span>
+              <div class="step-content">
+                <h4>Answer confident questions</h4>
+                <p>
+                  Start with what you know best. Build momentum. Do not spend
+                  too long on one question.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">90–160 min</span>
+              <div class="step-content">
+                <h4>Tackle medium questions</h4>
+                <p>
+                  Attempt all partial-knowledge questions. Write formulas,
+                  diagrams — partial marks add up.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">160–175 min</span>
+              <div class="step-content">
+                <h4>Difficult questions</h4>
+                <p>
+                  Attempt what you can. Even writing the formula earns marks.
+                  Never leave blank.
+                </p>
+              </div>
+            </div>
+            <div class="strategy-step">
+              <span class="step-time">175–180 min</span>
+              <div class="step-content">
+                <h4>Review & cleanup</h4>
+                <p>
+                  Check units, signs, and that all answers are clearly numbered.
+                  Do not change correct answers.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="pro-tip">
+            <span class="pro-tip-icon">💡</span>
+            <div class="pro-tip-content">
+              <strong>Topper Tip</strong>
+              <p>
+                Write neat, organized answers. Examiners are checking hundreds
+                of papers. A well-structured answer with clear headings, labeled
+                diagrams, and boxed final answers earns more marks than messy,
+                correct work.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- MISTAKES -->
+        <div class="section-card" id="mistakes">
+          <div class="section-header">
+            <div class="section-icon icon-red">⚠️</div>
+            <div class="section-title-block">
+              <h2>Common Mistakes to Avoid</h2>
+              <p>These cost toppers their marks every year</p>
+            </div>
+          </div>
+
+          <ul class="styled">
+            <li>
+              <strong>Writing without units.</strong> Every numerical answer
+              must have the correct SI unit. No unit = marks deducted.
+            </li>
+            <li>
+              <strong>Skipping steps in derivations.</strong> NEB examiners want
+              every step shown. Missing one step loses marks.
+            </li>
+            <li>
+              <strong>Wrong significant figures.</strong> Match your answer's
+              precision to the data given in the question.
+            </li>
+            <li>
+              <strong>Confusing similar formulas.</strong> Example: F = qvB vs F
+              = qE. Know when to use which.
+            </li>
+            <li>
+              <strong>Not drawing diagrams.</strong> Even a rough labeled
+              diagram in a theory answer shows understanding.
+            </li>
+            <li>
+              <strong>Leaving questions blank.</strong> Always attempt. Write
+              formula + substitution = partial marks, even if wrong.
+            </li>
+            <li>
+              <strong>Memorizing without understanding.</strong> NEB
+              increasingly asks application-based questions. Mugging does not
+              work.
+            </li>
+            <li>
+              <strong>Negative marking panic.</strong> NEB does NOT have
+              negative marking. Attempt every question.
+            </li>
+            <li>
+              <strong>Poor time management.</strong> Spending 30 minutes on one
+              5-mark question while leaving 10 marks unattempted is a disaster.
+            </li>
+            <li>
+              <strong>Reading question carelessly.</strong> Many marks are lost
+              because the student answered a slightly different question. Read
+              twice.
+            </li>
+          </ul>
+        </div>
+
+        <!-- CHECKLIST -->
+        <div class="section-card" id="checklist">
+          <div class="section-header">
+            <div class="section-icon icon-green">✅</div>
+            <div class="section-title-block">
+              <h2>Final 90+ Checklist</h2>
+              <p>Tick each one — if all are done, 90+ is yours</p>
+            </div>
+          </div>
+
+          <div class="checklist-progress">
+            <div class="progress-bar-wrap">
+              <div class="progress-bar-fill" id="progressFill"></div>
+            </div>
+            <span class="progress-text" id="progressText"
+              >0 / 20 completed</span
+            >
+          </div>
+
+          <div class="checklist-grid" id="checklistGrid">
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>All formulas memorized with meaning</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>All must-know derivations written 3× from memory</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>At least 10 numericals solved per chapter</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Past papers solved from 2018 to 2024</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Solved at least 2 full mock papers (timed)</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Formula sheet made and revised daily for 1 month</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>DUFSA method practiced in every numerical</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>All diagrams labeled clearly (ray, circuit, force)</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Units checked in every numerical answer</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Mechanics chapter fully revised + practiced</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Electricity & Magnetism fully revised</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Modern Physics fully revised</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Waves & Optics derivations practiced</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span
+                >Semiconductor topics (logic gates, P-N junction) covered</span
+              >
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Mistake log maintained and reviewed</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Exam time management strategy practiced</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span
+                >Answer format: definition → formula → diagram → answer</span
+              >
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>All frequently asked NEB questions identified</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span>Sleeping well and eating properly in exam week</span>
+            </div>
+            <div class="checklist-item" onclick="toggleCheck(this)">
+              <div class="check-box"></div>
+              <span
+                >Exam materials ready (pen, pencil, calculator, admit
+                card)</span
+              >
+            </div>
+          </div>
+
+          <div class="success-box" style="margin-top: 1.25rem">
+            <p>
+              <strong>All 20 checked? You are ready for 90+.</strong> Trust your
+              preparation. Stay calm in the exam. Attempt every question. Write
+              neat, organized answers. You have got this.
+            </p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- WATERMARK STRIP -->
+    <div class="watermark-strip">
+      <div class="watermark-logo">
+        <div class="wm-icon">
+          <img
+            src="../../public/favicon.png"
+            alt="EduBoost Nepal Logo"
+            class="footer-logo-img"
+          />
+        </div>
+        <div>
+          <div class="wm-text">EduBoost<span>-Nepal</span></div>
+          <div class="wm-tagline">Empowering NEB students across Nepal</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>
+        © 2024
+        <strong style="color: rgba(255, 255, 255, 0.75)">EduBoost Nepal</strong>
+        · Crafted for NEB Class 12 students · <a href="#top">Back to top ↑</a>
+      </p>
+      <p style="margin-top: 6px; font-size: 0.7rem; opacity: 0.4">
+        This guide is for educational purposes. Always follow your school and
+        NEB guidelines.
+      </p>
+    </footer>
+
+    <script>
+      function toggleCheck(el) {
+        el.classList.toggle("checked");
+        updateProgress();
+      }
+
+      function updateProgress() {
+        const items = document.querySelectorAll(".checklist-item");
+        const checked = document.querySelectorAll(
+          ".checklist-item.checked",
+        ).length;
+        const total = items.length;
+        const pct = Math.round((checked / total) * 100);
+        document.getElementById("progressFill").style.width = pct + "%";
+        document.getElementById("progressText").textContent =
+          checked + " / " + total + " completed";
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,375 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sign Up — EduBoost Nepal</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: { extend: { fontFamily: { sans: ["Sora", "sans-serif"] } } },
+      };
+    </script>
+    <style>
+      .glass {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(16px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fb923c, #f97316, #dc2626);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+      }
+      .input-field {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+      }
+      .input-field:focus {
+        border-color: #f97316;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
+      }
+      .role-card {
+        cursor: pointer;
+        transition: all 0.3s;
+        border: 2px solid rgba(255, 255, 255, 0.1);
+      }
+      .role-card.selected {
+        border-color: #f97316;
+        background: rgba(249, 115, 22, 0.1);
+      }
+      .role-card:hover {
+        border-color: rgba(249, 115, 22, 0.5);
+      }
+      .nepal-stripe {
+        background: linear-gradient(90deg, #003893 50%, #dc143c 50%);
+        height: 4px;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white font-sans min-h-screen flex flex-col">
+    <div class="nepal-stripe w-full"></div>
+
+    <div class="flex-1 flex items-center justify-center px-4 py-12">
+      <div class="w-full max-w-md">
+        <div class="text-center mb-8">
+          <a href="../index.html" class="inline-flex items-center gap-3 mb-6">
+            <img
+              src="../public/favicon.png"
+              alt="EduBoost Nepal"
+              class="w-12 h-12 rounded-2xl object-cover"
+            />
+            <span class="font-bold text-2xl"
+              >EduBoost <span class="gradient-text">Nepal</span></span
+            >
+          </a>
+          <h1 class="text-2xl font-bold mb-2">Create your account</h1>
+          <p class="text-slate-400 text-sm">
+            Start your free NEB exam prep journey today
+          </p>
+        </div>
+
+        <div class="glass rounded-3xl p-8">
+          <div
+            id="authMessage"
+            class="hidden mb-4 p-3 rounded-xl text-sm text-center font-medium"
+          ></div>
+
+          <!-- Role Selection -->
+          <div class="mb-6">
+            <label class="block text-sm font-medium text-slate-300 mb-3"
+              >I am a...</label
+            >
+            <div class="grid grid-cols-2 gap-3">
+              <div
+                class="role-card selected rounded-xl p-4 text-center"
+                id="roleStudent"
+                onclick="selectRole('student')"
+              >
+                <div class="text-2xl mb-2">🎓</div>
+                <div class="font-semibold text-sm">Student</div>
+                <div class="text-slate-400 text-xs mt-1">Class 11-12</div>
+              </div>
+              <div
+                class="role-card rounded-xl p-4 text-center"
+                id="roleTeacher"
+                onclick="selectRole('teacher')"
+              >
+                <div class="text-2xl mb-2">👨‍🏫</div>
+                <div class="font-semibold text-sm">Teacher</div>
+                <div class="text-slate-400 text-xs mt-1">Educator</div>
+              </div>
+            </div>
+          </div>
+          <input type="hidden" id="selectedRole" value="student" />
+
+          <form
+            id="signupForm"
+            class="space-y-4"
+            onsubmit="handleSignup(event)"
+          >
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Full Name</label
+              >
+              <input
+                id="signupName"
+                type="text"
+                required
+                placeholder="Ram Bahadur Shrestha"
+                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm"
+              />
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Email Address</label
+              >
+              <input
+                id="signupEmail"
+                type="email"
+                required
+                placeholder="your@email.com"
+                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm"
+              />
+            </div>
+            <div id="classSelectWrapper">
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Class</label
+              >
+              <select
+                id="signupClass"
+                class="input-field w-full px-4 py-3 rounded-xl text-white text-sm appearance-none"
+              >
+                <option value="11">Class 11</option>
+                <option value="12">Class 12</option>
+              </select>
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Password</label
+              >
+              <div class="relative">
+                <input
+                  id="signupPassword"
+                  type="password"
+                  required
+                  placeholder="Min. 8 characters"
+                  class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm pr-12"
+                />
+                <button
+                  type="button"
+                  onclick="togglePasswordVisibility('signupPassword')"
+                  class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400 hover:text-white text-xs"
+                >
+                  👁
+                </button>
+              </div>
+            </div>
+
+            <!-- Password strength -->
+            <div id="passwordStrength" class="hidden">
+              <div class="flex gap-1 mb-1">
+                <div class="h-1 flex-1 rounded" id="str1"></div>
+                <div class="h-1 flex-1 rounded" id="str2"></div>
+                <div class="h-1 flex-1 rounded" id="str3"></div>
+                <div class="h-1 flex-1 rounded" id="str4"></div>
+              </div>
+              <div id="strLabel" class="text-xs text-slate-400"></div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium text-slate-300 mb-2"
+                >Confirm Password</label
+              >
+              <input
+                id="confirmPassword"
+                type="password"
+                required
+                placeholder="Repeat password"
+                class="input-field w-full px-4 py-3 rounded-xl text-white placeholder-slate-500 text-sm"
+              />
+            </div>
+
+            <label
+              class="flex items-start gap-3 text-sm text-slate-400 cursor-pointer"
+            >
+              <input
+                type="checkbox"
+                id="agreeTerms"
+                required
+                class="mt-0.5 rounded"
+              />
+              <span
+                >I agree to the
+                <a href="terms.html" class="text-orange-400 hover:underline"
+                  >Terms of Service</a
+                >
+                and
+                <a href="privacy.html" class="text-orange-400 hover:underline"
+                  >Privacy Policy</a
+                ></span
+              >
+            </label>
+
+            <button
+              type="submit"
+              id="signupBtn"
+              class="btn-primary w-full text-white font-bold py-3.5 rounded-xl transition-all duration-300 text-sm"
+            >
+              Create Account →
+            </button>
+          </form>
+
+          <p class="text-center text-slate-400 text-sm mt-6">
+            Already have an account?
+            <a
+              href="login.html"
+              class="text-orange-400 hover:text-orange-300 font-semibold ml-1"
+              >Log in →</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      firebase.initializeApp(FIREBASE_CONFIG);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      auth.onAuthStateChanged((user) => {
+        if (user) window.location.href = "dashboard.html";
+      });
+
+      function selectRole(role) {
+        document.getElementById("selectedRole").value = role;
+        document
+          .getElementById("roleStudent")
+          .classList.toggle("selected", role === "student");
+        document
+          .getElementById("roleTeacher")
+          .classList.toggle("selected", role === "teacher");
+        document.getElementById("classSelectWrapper").style.display =
+          role === "student" ? "block" : "none";
+      }
+
+      // Password strength checker
+      document
+        .getElementById("signupPassword")
+        .addEventListener("input", function () {
+          const p = this.value;
+          const strengthEl = document.getElementById("passwordStrength");
+          if (!p) {
+            strengthEl.classList.add("hidden");
+            return;
+          }
+          strengthEl.classList.remove("hidden");
+
+          let score = 0;
+          if (p.length >= 8) score++;
+          if (/[A-Z]/.test(p)) score++;
+          if (/[0-9]/.test(p)) score++;
+          if (/[^A-Za-z0-9]/.test(p)) score++;
+
+          const colors = [
+            "bg-red-500",
+            "bg-orange-500",
+            "bg-yellow-500",
+            "bg-green-500",
+          ];
+          const labels = ["Weak", "Fair", "Good", "Strong"];
+
+          ["str1", "str2", "str3", "str4"].forEach((id, i) => {
+            const el = document.getElementById(id);
+            el.className = `h-1 flex-1 rounded ${i < score ? colors[score - 1] : "bg-slate-700"}`;
+          });
+          document.getElementById("strLabel").textContent =
+            labels[score - 1] || "";
+        });
+
+      function showMessage(msg, isError = false) {
+        const el = document.getElementById("authMessage");
+        el.textContent = msg;
+        el.className = `mb-4 p-3 rounded-xl text-sm text-center font-medium ${isError ? "bg-red-500/20 text-red-300 border border-red-500/30" : "bg-green-500/20 text-green-300 border border-green-500/30"}`;
+        el.classList.remove("hidden");
+      }
+
+      async function handleSignup(e) {
+        e.preventDefault();
+        const name = document.getElementById("signupName").value.trim();
+        const email = document.getElementById("signupEmail").value.trim();
+        const password = document.getElementById("signupPassword").value;
+        const confirm = document.getElementById("confirmPassword").value;
+        const role = document.getElementById("selectedRole").value;
+        const classLevel =
+          document.getElementById("signupClass")?.value || null;
+
+        if (password !== confirm) {
+          showMessage("Passwords do not match.", true);
+          return;
+        }
+        if (password.length < 8) {
+          showMessage("Password must be at least 8 characters.", true);
+          return;
+        }
+
+        const btn = document.getElementById("signupBtn");
+        btn.disabled = true;
+        btn.textContent = "Creating account...";
+
+        try {
+          const cred = await auth.createUserWithEmailAndPassword(
+            email,
+            password,
+          );
+          await cred.user.updateProfile({ displayName: name });
+
+          // Save user profile to Firestore
+          await db.collection("users").doc(cred.user.uid).set({
+            name,
+            email,
+            role,
+            class: classLevel,
+            createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+            savedContent: [],
+            activityCount: 0,
+          });
+
+          showMessage("Account created! Redirecting to dashboard...");
+          setTimeout(() => (window.location.href = "dashboard.html"), 1200);
+        } catch (err) {
+          const msgs = {
+            "auth/email-already-in-use":
+              "An account with this email already exists.",
+            "auth/invalid-email": "Please enter a valid email address.",
+            "auth/weak-password":
+              "Password is too weak. Use at least 8 characters.",
+          };
+          showMessage(msgs[err.code] || err.message, true);
+          btn.disabled = false;
+          btn.textContent = "Create Account →";
+        }
+      }
+
+      function togglePasswordVisibility(id) {
+        const input = document.getElementById(id);
+        input.type = input.type === "password" ? "text" : "password";
+      }
+    </script>
+  </body>
+</html>

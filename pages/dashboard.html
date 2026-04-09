@@ -1,0 +1,1169 @@
+<!doctype html>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — EduBoost Nepal</title>
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="../js/utils.js"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Sora", "sans-serif"],
+              serif: ["DM Serif Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+      }
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fb923c, #f97316, #dc2626);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+      }
+      .btn-primary:hover {
+        opacity: 0.9;
+        transform: translateY(-1px);
+      }
+      .input-field {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        transition: all 0.3s;
+      }
+      .input-field:focus {
+        border-color: #f97316;
+        outline: none;
+        box-shadow: 0 0 0 2px rgba(249, 115, 22, 0.15);
+      }
+      .sidebar-link {
+        transition: all 0.2s;
+        border-left: 3px solid transparent;
+      }
+      .sidebar-link:hover,
+      .sidebar-link.active {
+        background: rgba(249, 115, 22, 0.1);
+        border-left-color: #f97316;
+        color: white;
+      }
+      .card-hover {
+        transition:
+          transform 0.3s,
+          box-shadow 0.3s;
+      }
+      .card-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 16px 40px rgba(249, 115, 22, 0.15);
+      }
+      .tab-btn.active {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+        color: white;
+      }
+      .ai-output {
+        background: rgba(15, 23, 42, 0.8);
+        border: 1px solid rgba(249, 115, 22, 0.2);
+      }
+      @keyframes pulse-ring {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
+      }
+      .typing-dot {
+        animation: pulse-ring 1s ease-in-out infinite;
+      }
+      .typing-dot:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .typing-dot:nth-child(3) {
+        animation-delay: 0.4s;
+      }
+      .nepal-stripe {
+        background: linear-gradient(90deg, #003893 50%, #dc143c 50%);
+        height: 3px;
+      }
+
+      /* Mobile responsiveness improvements */
+      @media (max-width: 640px) {
+        /* Ensure minimum touch target sizes (44x44px) */
+        .sidebar-link,
+        .tab-btn,
+        .btn-primary,
+        .glass {
+          min-height: 2.75rem; /* 44px */
+        }
+
+        /* Better spacing on small screens */
+        body {
+          font-size: 14px;
+        }
+
+        /* Prevent horizontal scroll on small screens */
+        main {
+          overflow-x: hidden;
+        }
+
+        /* Better textarea sizing */
+        textarea {
+          font-size: 16px; /* Prevents zoom on iOS */
+        }
+
+        /* Select elements - prevent default styling issues */
+        select {
+          font-size: 16px;
+        }
+
+        /* Input padding for touch */
+        .input-field {
+          padding: 0.625rem 0.75rem;
+        }
+      }
+
+      /* Tablet optimization */
+      @media (min-width: 641px) and (max-width: 1024px) {
+        .input-field {
+          padding: 0.5rem 0.875rem;
+        }
+      }
+
+      /* Ensure proper container widths */
+      @media (max-width: 768px) {
+        main {
+          padding-bottom: 2rem;
+        }
+      }
+
+      /* Line clamping for saved content cards */
+      .line-clamp-3 {
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white font-sans">
+    <div class="nepal-stripe w-full fixed top-0 z-50"></div>
+
+    <!-- Layout -->
+    <div class="flex min-h-screen pt-0.5">
+      <!-- SIDEBAR -->
+      <aside
+        class="fixed left-0 top-0.5 h-full w-64 bg-slate-900 border-r border-slate-800 flex flex-col z-40 hidden lg:flex"
+      >
+        <!-- Logo -->
+        <div class="p-5 border-b border-slate-800">
+          <a href="../index.html" class="flex items-center gap-3">
+            <img
+              src="../public/favicon.png"
+              alt="EduBoost Nepal"
+              class="w-9 h-9 rounded-xl object-cover"
+            />
+            <span class="font-bold text-lg"
+              >EduBoost <span class="gradient-text">Nepal</span></span
+            >
+          </a>
+        </div>
+
+        <!-- User Profile -->
+        <div class="p-5 border-b border-slate-800">
+          <div class="flex items-center gap-3">
+            <div
+              id="sidebarAvatar"
+              class="w-10 h-10 rounded-xl bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center font-bold text-sm flex-shrink-0"
+            >
+              U
+            </div>
+            <div class="min-w-0">
+              <div id="sidebarName" class="font-semibold text-sm truncate">
+                Loading...
+              </div>
+              <div id="sidebarRole" class="text-slate-400 text-xs capitalize">
+                student
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nav Links -->
+        <nav class="flex-1 p-4 space-y-1 overflow-y-auto">
+          <a
+            href="dashboard.html"
+            class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"
+          >
+            <span>🏠</span> Dashboard
+          </a>
+          <a
+            href="#aiTools"
+            onclick="scrollToSection('aiTools')"
+            class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+          >
+            <span>🤖</span> AI Tools
+          </a>
+          <a
+            href="notes.html"
+            class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+          >
+            <span>📚</span> Notes
+          </a>
+          <a
+            href="blog.html"
+            class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+          >
+            <span>✍️</span> Blog
+          </a>
+          <a
+            href="downloads.html"
+            class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+          >
+            <span>📥</span> Downloads
+          </a>
+          <a
+            href="#saved"
+            onclick="loadSavedContent()"
+            class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+          >
+            <span>💾</span> Saved
+          </a>
+          <div id="adminLink" class="hidden">
+            <a
+              href="admin.html"
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>🎛️</span> Admin Panel
+            </a>
+          </div>
+        </nav>
+
+        <!-- Bottom -->
+        <div class="p-4 border-t border-slate-800 space-y-2">
+          <button
+            onclick="toggleDarkMode()"
+            class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
+          >
+            <span>🌙</span> Toggle Dark Mode
+          </button>
+          <button
+            onclick="handleSignOut()"
+            class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
+          >
+            <span>🚪</span> Sign Out
+          </button>
+        </div>
+      </aside>
+
+      <!-- MOBILE HEADER -->
+      <div
+        class="lg:hidden fixed top-0.5 left-0 right-0 bg-slate-900 border-b border-slate-800 px-3 sm:px-4 py-3 flex items-center justify-between z-30"
+      >
+        <a href="../index.html" class="flex items-center gap-2">
+          <img
+            src="../public/favicon.png"
+            alt="EduBoost Nepal"
+            class="w-8 h-8 rounded-lg object-cover"
+          />
+          <span class="font-bold text-xs sm:text-sm">EduBoost Nepal</span>
+        </a>
+        <div class="flex items-center gap-2">
+          <button
+            id="mobileMenuBtn"
+            onclick="toggleMobileMenu()"
+            class="text-slate-400 hover:text-white p-2 -mr-2"
+          >
+            <svg
+              class="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- MOBILE MENU DRAWER -->
+      <div
+        id="mobileMenuDrawer"
+        class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-20 hidden"
+        onclick="if (event.target === this) toggleMobileMenu();"
+      >
+        <aside
+          class="fixed left-0 top-14 h-[calc(100vh-56px)] w-64 bg-slate-900 border-r border-slate-800 flex flex-col z-30 overflow-y-auto"
+        >
+          <!-- Nav Links -->
+          <nav class="flex-1 p-4 space-y-1">
+            <a
+              href="dashboard.html"
+              onclick="toggleMobileMenu()"
+              class="sidebar-link active flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium"
+            >
+              <span>🏠</span> Dashboard
+            </a>
+            <a
+              href="#aiTools"
+              onclick="
+                scrollToSection('aiTools');
+                toggleMobileMenu();
+              "
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>🤖</span> AI Tools
+            </a>
+            <a
+              href="notes.html"
+              onclick="toggleMobileMenu()"
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>📚</span> Notes
+            </a>
+            <a
+              href="blog.html"
+              onclick="toggleMobileMenu()"
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>✍️</span> Blog
+            </a>
+            <a
+              href="downloads.html"
+              onclick="toggleMobileMenu()"
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>📥</span> Downloads
+            </a>
+            <a
+              href="#saved"
+              onclick="
+                loadSavedContent();
+                scrollToSection('saved');
+                toggleMobileMenu();
+              "
+              class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+            >
+              <span>💾</span> Saved
+            </a>
+            <div id="adminLinkMobile" class="hidden">
+              <a
+                href="admin.html"
+                onclick="toggleMobileMenu()"
+                class="sidebar-link flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-400"
+              >
+                <span>🎛️</span> Admin Panel
+              </a>
+            </div>
+          </nav>
+
+          <!-- Bottom -->
+          <div class="p-4 border-t border-slate-800 space-y-2">
+            <button
+              onclick="
+                toggleDarkMode();
+                toggleMobileMenu();
+              "
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-slate-400 hover:text-white hover:bg-slate-800 transition-all"
+            >
+              <span>🌙</span> Dark Mode
+            </button>
+            <button
+              onclick="handleSignOut()"
+              class="w-full flex items-center gap-3 px-3 py-2 rounded-xl text-sm text-red-400 hover:text-red-300 hover:bg-red-500/10 transition-all"
+            >
+              <span>🚪</span> Sign Out
+            </button>
+          </div>
+        </aside>
+      </div>
+
+      <!-- MAIN CONTENT -->
+      <main class="flex-1 lg:ml-64 pt-16 lg:pt-0 pb-8">
+        <div
+          class="w-full px-3 sm:px-4 md:px-6 lg:px-8 py-4 sm:py-6 lg:py-8 max-w-6xl mx-auto"
+        >
+          <!-- Welcome Header -->
+          <div class="mb-6 sm:mb-8">
+            <h1
+              class="text-xl sm:text-2xl lg:text-3xl font-bold mb-1 break-words"
+            >
+              Welcome back,
+              <span id="welcomeName" class="gradient-text">Student</span>! 👋
+            </h1>
+            <p class="text-slate-400 text-xs sm:text-sm" id="welcomeSub">
+              Ready for today's exam prep?
+            </p>
+          </div>
+
+          <!-- Quick Stats -->
+          <div
+            class="grid grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 mb-6 sm:mb-8"
+          >
+            <div
+              class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 card-hover"
+            >
+              <div class="text-lg sm:text-2xl mb-2">🤖</div>
+              <div class="text-lg sm:text-2xl font-bold" id="statQuestions">
+                0
+              </div>
+              <div class="text-slate-400 text-xs mt-1">Questions</div>
+            </div>
+            <div
+              class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 card-hover"
+            >
+              <div class="text-lg sm:text-2xl mb-2">💾</div>
+              <div class="text-lg sm:text-2xl font-bold" id="statSaved">0</div>
+              <div class="text-slate-400 text-xs mt-1">Saved Items</div>
+            </div>
+            <div
+              class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 card-hover"
+            >
+              <div class="text-lg sm:text-2xl mb-2">📚</div>
+              <div class="text-lg sm:text-2xl font-bold">10+</div>
+              <div class="text-slate-400 text-xs mt-1">Notes</div>
+            </div>
+            <div
+              class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-5 card-hover"
+            >
+              <div class="text-lg sm:text-2xl mb-2">🎯</div>
+              <div class="text-lg sm:text-2xl font-bold">NEB</div>
+              <div class="text-slate-400 text-xs mt-1">Aligned</div>
+            </div>
+          </div>
+
+          <!-- AI TOOLS SECTION -->
+          <section id="aiTools" class="mb-8 sm:mb-10">
+            <div
+              class="flex items-start sm:items-center gap-2 sm:gap-3 mb-4 sm:mb-6"
+            >
+              <div
+                class="w-8 sm:w-10 h-8 sm:h-10 bg-gradient-to-br from-orange-400 to-red-500 rounded-lg sm:rounded-xl flex items-center justify-center text-lg sm:text-xl flex-shrink-0"
+              >
+                🤖
+              </div>
+              <div class="min-w-0">
+                <h2 class="text-lg sm:text-xl font-bold">AI Tools</h2>
+                <p class="text-slate-400 text-xs">Powered by Google Gemini</p>
+              </div>
+            </div>
+
+            <!-- Tool Tabs -->
+            <div class="flex gap-1 sm:gap-2 mb-4 sm:mb-6 overflow-x-auto pb-2">
+              <button
+                onclick="switchTool('questions')"
+                id="tab-questions"
+                class="tab-btn active px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold glass transition-all whitespace-nowrap flex-shrink-0"
+              >
+                🎯 Questions
+              </button>
+              <button
+                onclick="switchTool('answers')"
+                id="tab-answers"
+                class="tab-btn px-3 sm:px-5 py-2 sm:py-2.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-semibold glass text-slate-300 transition-all whitespace-nowrap flex-shrink-0"
+              >
+                📝 Answers
+              </button>
+            </div>
+
+            <!-- QUESTION GENERATOR -->
+            <div id="tool-questions" class="tool-panel">
+              <div class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6">
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-3 sm:mb-4"
+                >
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Subject</label
+                    >
+                    <select
+                      id="qSubject"
+                      onchange="updateChapters()"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="">Select Subject</option>
+                      <option>Physics</option>
+                      <option>Chemistry</option>
+                      <option>Biology</option>
+                      <option>Mathematics</option>
+                      <option>Computer Science</option>
+                      <option>English</option>
+                      <option>Economics</option>
+                      <option>Accountancy</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Chapter</label
+                    >
+                    <select
+                      id="qChapter"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="">Select Chapter</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Class</label
+                    >
+                    <select
+                      id="qClass"
+                      onchange="updateChapters()"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="11">Class 11</option>
+                      <option value="12">Class 12</option>
+                    </select>
+                  </div>
+                </div>
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6"
+                >
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Question Type</label
+                    >
+                    <select
+                      id="qType"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="MCQ">MCQ (Multiple Choice)</option>
+                      <option value="Short Answer">Short Answer</option>
+                      <option value="Long Answer">Long Answer</option>
+                      <option value="Mixed">Mixed Types</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Number of Questions</label
+                    >
+                    <select
+                      id="qCount"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="5">5 Questions</option>
+                      <option value="10" selected>10 Questions</option>
+                      <option value="15">15 Questions</option>
+                      <option value="20">20 Questions</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Difficulty</label
+                    >
+                    <select
+                      id="qDifficulty"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="easy">Easy</option>
+                      <option value="medium" selected>Medium</option>
+                      <option value="hard">Hard / Board Level</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex gap-2 flex-wrap">
+                  <button
+                    onclick="generateQuestions()"
+                    id="generateQBtn"
+                    class="btn-primary text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl transition-all flex items-center gap-2 text-sm sm:text-base min-h-[40px]"
+                  >
+                    <span>⚡</span> Generate
+                  </button>
+                  <button
+                    onclick="clearOutput('qOutput')"
+                    class="glass px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium hover:bg-white/10 transition-all text-slate-300 min-h-[40px]"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+
+              <!-- Question Output -->
+              <div id="qOutput" class="mt-3 sm:mt-4 hidden">
+                <div
+                  class="ai-output rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6"
+                >
+                  <div
+                    class="flex items-center justify-between mb-3 sm:mb-4 flex-wrap gap-2"
+                  >
+                    <div
+                      class="text-xs sm:text-sm font-semibold text-orange-300 flex items-center gap-2"
+                    >
+                      <span>🎯</span> Generated Questions
+                    </div>
+                    <div class="flex gap-1 sm:gap-2">
+                      <button
+                        id="qCopyBtn"
+                        onclick="copyOutput('qContent', 'qCopyBtn')"
+                        class="glass px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-all"
+                      >
+                        📋 Copy
+                      </button>
+                      <button
+                        onclick="saveOutput('question', 'qContent')"
+                        class="glass px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-all text-green-300"
+                      >
+                        💾 Save
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    id="qContent"
+                    class="text-xs sm:text-sm text-slate-200 leading-relaxed prose-sm max-w-none overflow-x-auto"
+                  ></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- ANSWER GENERATOR -->
+            <div id="tool-answers" class="tool-panel hidden">
+              <div class="glass rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6">
+                <div class="mb-3 sm:mb-4">
+                  <label
+                    class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                    >Your Question</label
+                  >
+                  <textarea
+                    id="answerQuestion"
+                    placeholder="Paste or type your NEB exam question here...&#10;&#10;Example: Explain Newton's three laws of motion with examples."
+                    class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white placeholder-slate-500 resize-none min-h-[100px] sm:min-h-[128px]"
+                  ></textarea>
+                </div>
+                <div
+                  class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 mb-4 sm:mb-6"
+                >
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Answer Style</label
+                    >
+                    <select
+                      id="answerStyle"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="board">Board Exam Style</option>
+                      <option value="detailed">Detailed Explanation</option>
+                      <option value="points">Key Points Only</option>
+                      <option value="notes">Study Notes Format</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Subject</label
+                    >
+                    <select
+                      id="answerSubject"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="">Auto Detect</option>
+                      <option>Physics</option>
+                      <option>Chemistry</option>
+                      <option>Biology</option>
+                      <option>Mathematics</option>
+                      <option>Computer Science</option>
+                    </select>
+                  </div>
+                  <div>
+                    <label
+                      class="block text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2"
+                      >Marks</label
+                    >
+                    <select
+                      id="answerMarks"
+                      class="input-field w-full px-3 sm:px-4 py-2 sm:py-3 rounded-lg sm:rounded-xl text-xs sm:text-sm text-white appearance-none min-h-[40px]"
+                    >
+                      <option value="2">2 Marks</option>
+                      <option value="5" selected>5 Marks</option>
+                      <option value="8">8 Marks</option>
+                      <option value="long">Long Answer (15+)</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="flex gap-2 flex-wrap">
+                  <button
+                    onclick="generateAnswer()"
+                    id="generateABtn"
+                    class="btn-primary text-white font-bold px-6 sm:px-8 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl transition-all flex items-center gap-2 text-sm sm:text-base min-h-[40px]"
+                  >
+                    <span>✨</span> Generate
+                  </button>
+                  <button
+                    onclick="clearOutput('aOutput')"
+                    class="glass px-4 sm:px-5 py-2.5 sm:py-3.5 rounded-lg sm:rounded-xl text-xs sm:text-sm font-medium hover:bg-white/10 transition-all text-slate-300 min-h-[40px]"
+                  >
+                    Clear
+                  </button>
+                </div>
+              </div>
+
+              <!-- Answer Output -->
+              <div id="aOutput" class="mt-3 sm:mt-4 hidden">
+                <div
+                  class="ai-output rounded-xl sm:rounded-2xl p-3 sm:p-4 lg:p-6"
+                >
+                  <div
+                    class="flex items-center justify-between mb-3 sm:mb-4 flex-wrap gap-2"
+                  >
+                    <div
+                      class="text-xs sm:text-sm font-semibold text-blue-300 flex items-center gap-2"
+                    >
+                      <span>📝</span> Board-Style Answer
+                    </div>
+                    <div class="flex gap-1 sm:gap-2">
+                      <button
+                        id="aCopyBtn"
+                        onclick="copyOutput('aContent', 'aCopyBtn')"
+                        class="glass px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-all"
+                      >
+                        📋 Copy
+                      </button>
+                      <button
+                        onclick="saveOutput('answer', 'aContent')"
+                        class="glass px-3 sm:px-4 py-2 rounded-lg text-xs font-medium hover:bg-white/10 transition-all text-green-300"
+                      >
+                        💾 Save
+                      </button>
+                    </div>
+                  </div>
+                  <div
+                    id="aContent"
+                    class="text-xs sm:text-sm text-slate-200 leading-relaxed overflow-x-auto"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- QUICK ACCESS -->
+          <section class="mb-8 sm:mb-10">
+            <h2 class="text-lg sm:text-xl font-bold mb-4 sm:mb-5">
+              Quick Access
+            </h2>
+            <div
+              class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2 sm:gap-4"
+            >
+              <a
+                href="notes.html"
+                class="glass rounded-lg sm:rounded-2xl p-3 sm:p-5 card-hover text-center block min-h-[100px] flex flex-col items-center justify-center"
+              >
+                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">📚</div>
+                <div class="font-semibold text-xs sm:text-sm">Study Notes</div>
+                <div class="text-slate-400 text-xs">All subjects</div>
+              </a>
+              <a
+                href="downloads.html"
+                class="glass rounded-lg sm:rounded-2xl p-3 sm:p-5 card-hover text-center block min-h-[100px] flex flex-col items-center justify-center"
+              >
+                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">📥</div>
+                <div class="font-semibold text-xs sm:text-sm">Downloads</div>
+                <div class="text-slate-400 text-xs">PDFs & papers</div>
+              </a>
+              <a
+                href="blog.html"
+                class="glass rounded-lg sm:rounded-2xl p-3 sm:p-5 card-hover text-center block min-h-[100px] flex flex-col items-center justify-center"
+              >
+                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">✍️</div>
+                <div class="font-semibold text-xs sm:text-sm">Blog</div>
+                <div class="text-slate-400 text-xs">Tips & guides</div>
+              </a>
+              <a
+                href="admin.html"
+
+            </div>
+          </section>
+
+          <!-- SAVED CONTENT -->
+          <section id="saved" class="scroll-mt-16 lg:scroll-mt-0">
+            <div class="flex items-center justify-between mb-4 sm:mb-5">
+              <h2 class="text-lg sm:text-xl font-bold">Saved Content</h2>
+              <button
+                onclick="loadSavedContent()"
+                class="text-xs sm:text-sm text-orange-400 hover:text-orange-300 transition-colors"
+              >
+                Refresh ↻
+              </button>
+            </div>
+            <div id="savedList">
+                 id="adminQuickAccess"
+                class="glass rounded-lg sm:rounded-2xl p-3 sm:p-5 card-hover text-center block hidden min-h-[100px] flex flex-col items-center justify-center"
+              >
+                <div class="text-2xl sm:text-3xl mb-2 sm:mb-3">🎛️</div>
+                <div class="font-semibold text-xs sm:text-sm">Admin Panel</div>
+                <div class="text-slate-400 text-xs">Manage content</div>
+              </a>             <div
+                class="glass rounded-lg sm:rounded-2xl p-6 sm:p-8 text-center"
+              >
+                <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">💾</div>
+                <p class="text-slate-400 text-xs sm:text-sm">
+                  No saved content yet. Generate questions or answers and save
+                  them!
+                </p>
+              </div>
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+
+    <!-- Toast container is handled by showToast() -->
+
+    <script>
+      firebase.initializeApp(FIREBASE_CONFIG);
+      const auth = firebase.auth();
+      const db = firebase.firestore();
+
+      let currentUser = null;
+      let userProfile = null;
+
+      // Auth guard
+      auth.onAuthStateChanged(async (user) => {
+        if (!user) {
+          window.location.href = "login.html";
+          return;
+        }
+        currentUser = user;
+        userProfile = await getUserProfile(user.uid);
+        updateUI();
+        loadSavedContent();
+        loadStats();
+      });
+
+      function updateUI() {
+        const name = userProfile?.name || currentUser.displayName || "Student";
+        const role = userProfile?.role || "student";
+        const initials = name
+          .split(" ")
+          .map((w) => w[0])
+          .join("")
+          .toUpperCase()
+          .slice(0, 2);
+
+        document.getElementById("welcomeName").textContent = name.split(" ")[0];
+        document.getElementById("sidebarName").textContent = name;
+        document.getElementById("sidebarRole").textContent = role;
+        document.getElementById("sidebarAvatar").textContent = initials;
+
+        if (role === "teacher" || role === "admin") {
+          document.getElementById("adminLink").classList.remove("hidden");
+          document.getElementById("adminLinkMobile").classList.remove("hidden");
+          document
+            .getElementById("adminQuickAccess")
+            .classList.remove("hidden");
+          document.getElementById("welcomeSub").textContent =
+            "Manage your students and content today.";
+        }
+      }
+
+      // Tool switching
+      function switchTool(tool) {
+        document
+          .querySelectorAll(".tool-panel")
+          .forEach((p) => p.classList.add("hidden"));
+        document.querySelectorAll(".tab-btn").forEach((b) => {
+          b.classList.remove("active");
+          b.classList.add("text-slate-300");
+        });
+        document.getElementById(`tool-${tool}`).classList.remove("hidden");
+        const btn = document.getElementById(`tab-${tool}`);
+        btn.classList.add("active");
+        btn.classList.remove("text-slate-300");
+      }
+
+      // Update chapters based on subject + class
+      function updateChapters() {
+        const subject = document.getElementById("qSubject").value;
+        const classLevel = parseInt(document.getElementById("qClass").value);
+        const chapterSelect = document.getElementById("qChapter");
+        chapterSelect.innerHTML = '<option value="">All Chapters</option>';
+        if (subject && NEB_CHAPTERS[subject]?.[classLevel]) {
+          NEB_CHAPTERS[subject][classLevel].forEach((ch, i) => {
+            chapterSelect.innerHTML += `<option value="${ch}">Chapter ${i + 1}: ${ch}</option>`;
+          });
+        }
+      }
+
+      // Generate Questions
+      async function generateQuestions() {
+        const subject = document.getElementById("qSubject").value;
+        const chapter = document.getElementById("qChapter").value;
+        const type = document.getElementById("qType").value;
+        const count = document.getElementById("qCount").value;
+        const difficulty = document.getElementById("qDifficulty").value;
+        const classLevel = document.getElementById("qClass").value;
+
+        if (!subject) {
+          showToast("Please select a subject", "warning");
+          return;
+        }
+
+        const btn = document.getElementById("generateQBtn");
+        btn.disabled = true;
+        btn.innerHTML =
+          '<svg class="animate-spin w-4 h-4 inline mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Generating...';
+
+        const outputEl = document.getElementById("qOutput");
+        const contentEl = document.getElementById("qContent");
+        outputEl.classList.remove("hidden");
+        contentEl.innerHTML = loadingSpinner(
+          "Generating NEB-style questions...",
+        );
+
+        const prompt = `You are an expert NEB (National Examination Board) Nepal exam paper setter for Class ${classLevel}.
+
+Generate exactly ${count} ${difficulty}-level ${type} question(s) for:
+- Subject: ${subject}
+- ${chapter ? `Chapter: ${chapter}` : "General syllabus"}
+- Class: ${classLevel}
+
+Format requirements:
+- Each question must be clearly numbered (Q1, Q2, etc.)
+- For MCQ: Include 4 options (A, B, C, D) and mark the correct answer
+- For Short Answer: Include a brief model answer (2-3 sentences)
+- For Long Answer: Include key points to cover
+- Questions must match NEB exam difficulty and style
+- Use proper Nepali/NEB terminology where applicable
+- Include marks value for each question
+
+Make questions that test understanding, not just memorization. Cover different cognitive levels (knowledge, comprehension, application, analysis).`;
+
+        try {
+          const result = await callGeminiAI(prompt);
+          contentEl.innerHTML = `<div class="whitespace-pre-wrap font-mono text-xs leading-relaxed text-slate-200">${result}</div>`;
+
+          // Update stats
+          const newCount =
+            parseInt(localStorage.getItem("questionCount") || "0") +
+            parseInt(count);
+          localStorage.setItem("questionCount", newCount);
+          document.getElementById("statQuestions").textContent = newCount;
+        } catch (e) {
+          contentEl.innerHTML = `<div class="text-red-300 text-sm p-4 bg-red-500/10 rounded-xl">
+        <strong>API Error:</strong> ${e.message}<br><br>
+        <span class="text-slate-400 text-xs">Please ensure your Gemini API key is set in js/utils.js</span>
+      </div>`;
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = "<span>⚡</span> Generate Questions";
+      }
+
+      // Generate Answer
+      async function generateAnswer() {
+        const question = document.getElementById("answerQuestion").value.trim();
+        const style = document.getElementById("answerStyle").value;
+        const subject = document.getElementById("answerSubject").value;
+        const marks = document.getElementById("answerMarks").value;
+
+        if (!question) {
+          showToast("Please enter a question", "warning");
+          return;
+        }
+
+        const btn = document.getElementById("generateABtn");
+        btn.disabled = true;
+        btn.innerHTML =
+          '<svg class="animate-spin w-4 h-4 inline mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z"></path></svg> Generating...';
+
+        const outputEl = document.getElementById("aOutput");
+        const contentEl = document.getElementById("aContent");
+        outputEl.classList.remove("hidden");
+        contentEl.innerHTML = loadingSpinner("Crafting board-style answer...");
+
+        const styleGuides = {
+          board:
+            "Write a formal NEB board examination answer with clear structure, definitions, explanations, and examples. Use proper headings and point format where appropriate.",
+          detailed:
+            "Write a comprehensive, detailed explanation suitable for deep learning. Include background, mechanisms, examples, and real-world applications.",
+          points:
+            "List only the key points in a concise, bullet-point format. Each point should be clear and memorable.",
+          notes:
+            "Format as study notes with clear headings, subpoints, key terms highlighted, and memory tips.",
+        };
+
+        const prompt = `You are an expert NEB Nepal teacher and examiner${subject ? ` specializing in ${subject}` : ""}.
+
+Question: "${question}"
+
+Write a ${marks}-mark ${style === "board" ? "board exam style" : style} answer.
+
+${styleGuides[style]}
+
+Requirements:
+- Answer should be worth ${marks} marks as per NEB marking scheme
+- Use clear structure with Introduction, Body, Conclusion where appropriate
+- Include relevant diagrams/tables described in text if needed
+- Use technical terms correctly
+- Write at NEB Class 11-12 level
+- End with a brief summary if it's a long answer`;
+
+        try {
+          const result = await callGeminiAI(prompt);
+          contentEl.innerHTML = `<div class="whitespace-pre-wrap text-sm leading-relaxed text-slate-200">${result}</div>`;
+        } catch (e) {
+          contentEl.innerHTML = `<div class="text-red-300 text-sm p-4 bg-red-500/10 rounded-xl">
+        <strong>API Error:</strong> ${e.message}<br><br>
+        <span class="text-slate-400 text-xs">Please set your Gemini API key in js/utils.js</span>
+      </div>`;
+        }
+
+        btn.disabled = false;
+        btn.innerHTML = "<span>✨</span> Generate Answer";
+      }
+
+      // Copy output
+      function copyOutput(contentId, btnId) {
+        const text = document.getElementById(contentId).innerText;
+        copyToClipboard(text, document.getElementById(btnId));
+      }
+
+      // Clear output
+      function clearOutput(outputId) {
+        document.getElementById(outputId).classList.add("hidden");
+      }
+
+      // Save output to Firestore
+      async function saveOutput(type, contentId) {
+        if (!currentUser) {
+          showToast("Please login first", "error");
+          return;
+        }
+        const content = document.getElementById(contentId).innerText;
+        if (!content || content.length < 10) {
+          showToast("Nothing to save", "warning");
+          return;
+        }
+
+        const success = await saveGeneratedContent(
+          currentUser.uid,
+          type,
+          content,
+          {
+            savedAt: new Date().toISOString(),
+          },
+        );
+
+        if (success) {
+          showToast("Saved successfully! 💾");
+          loadSavedContent();
+          loadStats();
+        } else {
+          showToast("Failed to save. Check Firestore setup.", "error");
+        }
+      }
+
+      // Load saved content
+      async function loadSavedContent() {
+        if (!currentUser) return;
+        const items = await getSavedContent(currentUser.uid);
+        const listEl = document.getElementById("savedList");
+
+        if (items.length === 0) {
+          listEl.innerHTML = `<div class="glass rounded-lg sm:rounded-2xl p-6 sm:p-8 text-center">
+        <div class="text-3xl sm:text-4xl mb-2 sm:mb-3">💾</div>
+        <p class="text-slate-400 text-xs sm:text-sm">No saved content yet. Generate questions or answers and save them!</p>
+      </div>`;
+          return;
+        }
+
+        listEl.innerHTML = items
+          .map(
+            (item, idx) => `
+      <div class="glass rounded-lg sm:rounded-2xl p-3 sm:p-5 mb-2 sm:mb-3">
+        <div class="flex items-center justify-between mb-2 sm:mb-3 flex-wrap gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <span class="text-lg flex-shrink-0">${item.type === "question" ? "🎯" : "📝"}</span>
+            <span class="text-xs sm:text-sm font-semibold capitalize text-white">${item.type}</span>
+            <span class="text-xs text-slate-500 flex-shrink-0">${new Date(item.metadata?.savedAt || Date.now()).toLocaleDateString()}</span>
+          </div>
+          <button onclick="deleteSaved('${item.id}')" class="text-slate-500 hover:text-red-400 transition-colors text-xs flex-shrink-0">✕</button>
+        </div>
+        <div class="text-slate-300 text-xs leading-relaxed line-clamp-3 mb-3 break-words whitespace-pre-wrap">${item.content.slice(0, 300)}${item.content.length > 300 ? "..." : ""}</div>
+        <button onclick="copySavedContent('saved-${idx}')" id="saved-${idx}" class="text-orange-400 text-xs hover:text-orange-300 transition-colors">📋 Copy Full</button>
+        <span id="saved-${idx}-data" style="display:none;">${item.content.replace(/"/g, "&quot;")}</span>
+      </div>`,
+          )
+          .join("");
+
+        document.getElementById("statSaved").textContent = items.length;
+      }
+
+      function copySavedContent(btnId) {
+        const btn = document.getElementById(btnId);
+        const data = document.getElementById(btnId + "-data");
+        const text = data.textContent;
+        copyToClipboard(text, btn);
+      }
+
+      async function deleteSaved(id) {
+        try {
+          await db.collection("savedContent").doc(id).delete();
+          showToast("Deleted");
+          loadSavedContent();
+        } catch (e) {
+          showToast("Failed to delete", "error");
+        }
+      }
+
+      function loadStats() {
+        document.getElementById("statQuestions").textContent =
+          localStorage.getItem("questionCount") || "0";
+      }
+
+      function scrollToSection(id) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
+      }
+
+      function toggleMobileMenu() {
+        const drawer = document.getElementById("mobileMenuDrawer");
+        if (drawer.classList.contains("hidden")) {
+          drawer.classList.remove("hidden");
+        } else {
+          drawer.classList.add("hidden");
+        }
+      }
+
+      async function handleSignOut() {
+        await firebase.auth().signOut();
+        window.location.href = "../index.html";
+      }
+    </script>
+  </body>
+</html>

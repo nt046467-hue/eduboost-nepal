@@ -1,0 +1,1183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Complete NEB Class 12 Exam Preparation Guide 2082 | EduBoost Nepal</title>
+  <link rel="icon" href="../public/favicon.png" type="image/png"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --crimson: #c0392b;
+      --crimson-dark: #96281b;
+      --ink: #1a1a2e;
+      --ink-soft: #2d2d44;
+      --cream: #fdf8f2;
+      --warm-white: #fff9f4;
+      --gold: #d4a017;
+      --gold-light: #f0c040;
+      --muted: #7a7a8c;
+      --border: #e8ddd0;
+      --highlight-bg: #fff3e0;
+      --tag-bg: #fdecea;
+      --tag-text: #c0392b;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--ink);
+      line-height: 1.75;
+      font-size: 16px;
+    }
+
+    /* WATERMARK */
+    body::before {
+      content: 'EduBoost-Nepal';
+      position: fixed;
+      bottom: 32px;
+      right: 32px;
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--crimson);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      opacity: 0.18;
+      transform: rotate(-30deg);
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* DIAGONAL WATERMARK */
+    body::after {
+      content: 'EduBoost-Nepal';
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-35deg);
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 900;
+      color: var(--crimson);
+      opacity: 0.03;
+      pointer-events: none;
+      white-space: nowrap;
+      z-index: 0;
+    }
+
+    /* HEADER */
+    header {
+      background: var(--ink);
+      padding: 14px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      border-bottom: 3px solid var(--crimson);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 900;
+      color: #fff;
+      letter-spacing: 0.02em;
+    }
+
+    .logo span { color: var(--gold-light); }
+
+    .header-tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--ink);
+      padding: 64px 40px 52px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 320px; height: 320px;
+      background: radial-gradient(circle, rgba(192,57,43,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-inner {
+      max-width: 820px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      background: var(--crimson);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      padding: 5px 14px;
+      border-radius: 2px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 900;
+      color: #fff;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 em {
+      color: var(--gold-light);
+      font-style: normal;
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-bottom: 28px;
+    }
+
+    .hero-meta span {
+      font-size: 13px;
+      color: #999;
+      font-weight: 500;
+    }
+
+    .hero-meta span strong { color: var(--gold-light); }
+
+    .hero-intro {
+      font-size: 16.5px;
+      color: #ccc;
+      line-height: 1.8;
+      max-width: 680px;
+      border-left: 3px solid var(--crimson);
+      padding-left: 20px;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* SECTIONS */
+    section {
+      margin-bottom: 52px;
+      padding-bottom: 52px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    section:last-child { border-bottom: none; }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 900;
+      color: var(--ink);
+      margin-bottom: 18px;
+      padding-left: 16px;
+      border-left: 4px solid var(--crimson);
+      line-height: 1.3;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--crimson-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin: 24px 0 10px;
+    }
+
+    p {
+      font-size: 15.5px;
+      color: var(--ink-soft);
+      margin-bottom: 14px;
+      line-height: 1.8;
+    }
+
+    ul, ol {
+      padding-left: 20px;
+      margin-bottom: 16px;
+    }
+
+    li {
+      font-size: 15px;
+      color: var(--ink-soft);
+      margin-bottom: 7px;
+      line-height: 1.7;
+    }
+
+    li::marker { color: var(--crimson); }
+
+    strong { color: var(--ink); font-weight: 600; }
+
+    /* CALLOUT BOX */
+    .callout {
+      background: var(--highlight-bg);
+      border: 1px solid #f0c87a;
+      border-left: 4px solid var(--gold);
+      border-radius: 6px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14.5px;
+      color: #5a4200;
+    }
+
+    .callout strong { color: #7a5200; }
+
+    /* INFO GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 20px 0;
+    }
+
+    .info-card {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--crimson);
+      border-radius: 6px;
+      padding: 18px;
+    }
+
+    .info-card h4 {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--crimson);
+      margin-bottom: 8px;
+    }
+
+    .info-card p { font-size: 14px; margin-bottom: 0; }
+
+    /* SUBJECT BLOCK */
+    .subject-block {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 22px 24px;
+      margin: 20px 0;
+    }
+
+    .subject-block h3 {
+      margin-top: 0;
+      font-size: 15px;
+      color: var(--ink);
+      text-transform: none;
+      letter-spacing: 0;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .subject-block h3::before {
+      content: '';
+      display: inline-block;
+      width: 8px; height: 8px;
+      background: var(--crimson);
+      border-radius: 50%;
+    }
+
+    /* TAG */
+    .tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 10px;
+      border-radius: 2px;
+      margin-bottom: 10px;
+    }
+
+    /* CHECKLIST */
+    .checklist { list-style: none; padding-left: 0; }
+
+    .checklist li {
+      padding: 9px 14px 9px 40px;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+      font-size: 15px;
+    }
+
+    .checklist li:last-child { border-bottom: none; }
+
+    .checklist li::before {
+      content: '☐';
+      position: absolute;
+      left: 12px;
+      color: var(--crimson);
+      font-size: 16px;
+    }
+
+    /* MISTAKE LIST */
+    .mistake-list { list-style: none; padding-left: 0; counter-reset: mistake; }
+
+    .mistake-list li {
+      counter-increment: mistake;
+      padding: 12px 16px 12px 52px;
+      position: relative;
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      margin-bottom: 10px;
+      font-size: 15px;
+    }
+
+    .mistake-list li::before {
+      content: counter(mistake);
+      position: absolute;
+      left: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: var(--crimson);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      width: 24px; height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* TIMELINE */
+    .timeline { border-left: 2px solid var(--crimson); padding-left: 24px; margin: 16px 0; }
+
+    .timeline-item { margin-bottom: 22px; position: relative; }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -31px; top: 6px;
+      width: 14px; height: 14px;
+      background: var(--crimson);
+      border-radius: 50%;
+      border: 2px solid var(--cream);
+    }
+
+    .timeline-item h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--crimson);
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 6px;
+    }
+
+    .timeline-item p { font-size: 14.5px; margin-bottom: 0; }
+
+    /* TABLE */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      font-size: 14.5px;
+    }
+
+    th {
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 14px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 13px;
+      letter-spacing: 0.05em;
+    }
+
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-soft);
+    }
+
+    tr:nth-child(even) td { background: var(--warm-white); }
+
+    /* FOOTER */
+    footer {
+      background: var(--ink);
+      color: #888;
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 13px;
+      border-top: 3px solid var(--crimson);
+    }
+
+    footer strong { color: var(--gold-light); }
+
+    @media (max-width: 600px) {
+      header { padding: 12px 20px; }
+      .hero { padding: 44px 20px 36px; }
+      main { padding: 36px 16px 60px; }
+    }
+
+    /* ===== INTERACTIVE CHECKLIST WIDGET ===== */
+    .checklist-widget {
+      background: var(--warm-white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-top: 20px;
+    }
+
+    .cw-top {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .cw-pct-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--ink);
+      border-radius: 10px;
+      padding: 14px 20px;
+      min-width: 90px;
+    }
+
+    .cw-pct {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-weight: 900;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+
+    .cw-ready-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #888;
+      margin-top: 4px;
+    }
+
+    .cw-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cw-msg {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .cw-count {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .cw-bar-outer {
+      position: relative;
+      background: var(--border);
+      border-radius: 99px;
+      height: 12px;
+      margin-bottom: 28px;
+      overflow: visible;
+    }
+
+    .cw-bar-inner {
+      height: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, #c0392b, #e67e22);
+      transition: width 0.5s cubic-bezier(.4,0,.2,1);
+      position: relative;
+    }
+
+    .cw-bar-inner::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: 50%;
+      transform: translateY(-50%);
+      width: 18px; height: 18px;
+      background: var(--crimson);
+      border-radius: 50%;
+      border: 3px solid var(--warm-white);
+      box-shadow: 0 0 0 2px var(--crimson);
+      transition: opacity 0.3s;
+    }
+
+    .cw-bar-inner[style*="width:0%"]::after { opacity: 0; }
+
+    .cw-bar-milestones {
+      position: absolute;
+      top: 18px;
+      left: 0; right: 0;
+      pointer-events: none;
+    }
+
+    .cw-bar-milestones span {
+      position: absolute;
+      transform: translateX(-50%);
+      font-size: 10px;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .cw-list {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 8px;
+    }
+
+    .cw-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin-bottom: 8px;
+      cursor: pointer;
+      background: #fff;
+      transition: all 0.2s;
+      user-select: none;
+    }
+
+    .cw-item:hover { border-color: #c0392b44; background: #fff5f5; }
+
+    .cw-item.done {
+      background: #f0faf4;
+      border-color: #a8d5b5;
+    }
+
+    .cw-item.done .cw-text {
+      text-decoration: line-through;
+      text-decoration-color: #4caf7d;
+      color: var(--muted);
+    }
+
+    .cw-box {
+      width: 22px; height: 22px;
+      min-width: 22px;
+      border-radius: 6px;
+      border: 2px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      background: #fff;
+      transition: all 0.2s;
+    }
+
+    .cw-item.done .cw-box {
+      background: #27ae60;
+      border-color: #27ae60;
+    }
+
+    .cw-tick {
+      width: 12px; height: 12px;
+      fill: none;
+      stroke: #fff;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      opacity: 0;
+      transition: opacity 0.15s;
+    }
+
+    .cw-item.done .cw-tick { opacity: 1; }
+
+    .cw-text {
+      flex: 1;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .cw-tag {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 99px;
+      white-space: nowrap;
+    }
+
+    .t-prep     { background: #e8f4fd; color: #1a6fa8; }
+    .t-practice { background: #f0ebfe; color: #5b3bbf; }
+    .t-logistics{ background: #fef5e4; color: #9a6400; }
+    .t-mindset  { background: #e9faf2; color: #1a7a4a; }
+
+    .cw-congrats {
+      display: none;
+      text-align: center;
+      padding: 16px;
+      margin-top: 12px;
+      background: linear-gradient(135deg, #1a7a4a11, #27ae6022);
+      border: 1px solid #a8d5b5;
+      border-radius: 8px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #1a7a4a;
+    }
+
+    .cw-reset {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 12px;
+      padding: 6px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-family: 'DM Sans', sans-serif;
+      margin-top: 8px;
+    }
+
+    .cw-reset:hover { background: var(--border); color: var(--ink); }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">EduBoost<span>Nepal</span></div>
+  <div class="header-tag">NEB Exam Resources</div>
+</header>
+
+<div class="hero">
+  <div class="hero-inner">
+    <span class="hero-badge">2082 Board Exam Guide</span>
+    <h1>The Complete NEB Class 12<br/><em>Exam Preparation Guide 2082</em></h1>
+    <div class="hero-meta">
+      <span>By <strong>EduBoost Nepal</strong></span>
+      <span>For Science, Management &amp; Humanities</span>
+      <span>Updated: 2082 B.S.</span>
+    </div>
+    <p class="hero-intro">
+      Most students don't fail because they are weak — they fail because they study without strategy.
+      This guide gives you a clear, step-by-step plan to prepare for NEB Class 12 exams. No fluff. No vague tips.
+      Just a practical roadmap from today until exam day. Follow it seriously, and you will perform.
+    </p>
+  </div>
+</div>
+
+<main>
+
+  <!-- SECTION 1 -->
+  <section>
+    <h2>1. Understanding the NEB Class 12 Exam Structure</h2>
+
+    <p>Before you study, understand what you are actually preparing for. NEB Class 12 (Grade 12) exams are conducted by the National Examination Board, Nepal. Your results here directly affect college admissions, scholarships, and entrance exams.</p>
+
+    <div class="info-grid">
+      <div class="info-card">
+        <h4>Science Stream</h4>
+        <p>Physics, Chemistry, Math/Biology, English, Computer/Optional Math</p>
+      </div>
+      <div class="info-card">
+        <h4>Management Stream</h4>
+        <p>Account, Business Math, Economics, Business Studies, English</p>
+      </div>
+      <div class="info-card">
+        <h4>Humanities Stream</h4>
+        <p>Nepali, English, Social Studies, Economics/Sociology, Optional</p>
+      </div>
+    </div>
+
+    <h3>Marks Distribution</h3>
+    <table>
+      <thead>
+        <tr><th>Component</th><th>Theory</th><th>Practical/Internal</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Physics / Chemistry</td><td>75 marks</td><td>25 marks</td></tr>
+        <tr><td>Mathematics</td><td>100 marks</td><td>—</td></tr>
+        <tr><td>English</td><td>75 marks</td><td>25 marks</td></tr>
+        <tr><td>Account / Economics</td><td>75 marks</td><td>25 marks</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <strong>Why it matters:</strong> Practical/internal marks (25 marks) are already yours if you attend school regularly. Focus your energy on the 75-mark theory paper — that's where most students lose points.
+    </div>
+  </section>
+
+  <!-- SECTION 2 -->
+  <section>
+    <h2>2. Subject Prioritization Strategy</h2>
+
+    <p>Not all subjects need equal time. Allocate study hours based on difficulty and marks potential.</p>
+
+    <h3>High-Effort Subjects (give more time)</h3>
+    <ul>
+      <li><strong>Physics &amp; Chemistry:</strong> Requires both numerical practice and theory understanding. Don't skip derivations.</li>
+      <li><strong>Mathematics / Account:</strong> Pure practice-based. One missed chapter = guaranteed lost marks.</li>
+    </ul>
+
+    <h3>High-Scoring Subjects (score with smart study)</h3>
+    <ul>
+      <li><strong>English:</strong> Predictable question patterns. Scoring 55+ out of 75 is achievable with consistent practice.</li>
+      <li><strong>Biology / Economics:</strong> Memory-based. Regular revision beats last-minute cramming.</li>
+    </ul>
+
+    <h3>How to Balance Weak vs Strong Subjects</h3>
+    <ul>
+      <li>Don't ignore your strong subjects — they can slip if left untouched for weeks.</li>
+      <li>Give 60% of your weekly study time to weak/difficult subjects.</li>
+      <li>Set a minimum score target per subject and track it weekly.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 3 -->
+  <section>
+    <h2>3. Smart Study Plan (3–6 Month Strategy)</h2>
+
+    <p>A plan that looks good on paper but is unrealistic will fail. Build a schedule you can actually follow.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <h4>Months 1–2 | Foundation Phase</h4>
+        <p>Complete all chapters once. Focus on understanding, not memorization. Cover every topic — no skipping.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Months 3–4 | Practice Phase</h4>
+        <p>Solve past questions chapter-wise. Start timed practice sets. Identify weak areas and fix them immediately.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Month 5 | Full Revision Phase</h4>
+        <p>Revise all subjects using short notes. Solve 2–3 full model sets per week under exam conditions.</p>
+      </div>
+      <div class="timeline-item">
+        <h4>Month 6 | Final Tightening</h4>
+        <p>Focus only on high-weightage topics. Stop learning new things. Repeat your revision cycle.</p>
+      </div>
+    </div>
+
+    <h3>Daily Routine Example</h3>
+    <ul>
+      <li><strong>5:30–8:00 AM:</strong> High-focus subject (Math / Physics / Account)</li>
+      <li><strong>9:00–12:00 AM:</strong> Theory subject + past questions</li>
+      <li><strong>2:00–4:00 PM:</strong> Weak subject practice</li>
+      <li><strong>6:00–8:00 PM:</strong> Revision + short notes review</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Rule:</strong> Study 6–8 focused hours daily — not 12 hours of distracted reading. Quality over duration.
+    </div>
+  </section>
+
+  <!-- SECTION 4 -->
+  <section>
+    <h2>4. How to Study Each Subject Effectively</h2>
+
+    <div class="subject-block">
+      <div class="tag">Physics</div>
+      <h3>Physics</h3>
+      <ul>
+        <li><strong>Method:</strong> Solve numericals daily. Understand derivations — don't just memorize steps.</li>
+        <li><strong>Common mistake:</strong> Students read physics like a theory subject. Physics needs calculation practice every single day.</li>
+        <li><strong>Score higher:</strong> Focus on Mechanics, Electrostatics, Optics, and Modern Physics — these hold the most marks in NEB.</li>
+      </ul>
+    </div>
+
+    <div class="subject-block">
+      <div class="tag">Chemistry</div>
+      <h3>Chemistry</h3>
+      <ul>
+        <li><strong>Method:</strong> Organic Chemistry requires reaction mechanisms — draw them out repeatedly. Physical Chemistry requires formula-based practice.</li>
+        <li><strong>Common mistake:</strong> Students memorize reactions without understanding why they happen — making it impossible to answer application questions.</li>
+        <li><strong>Score higher:</strong> Master reaction equations and name reactions. These appear directly in exams.</li>
+      </ul>
+    </div>
+
+    <div class="subject-block">
+      <div class="tag">Mathematics / Account</div>
+      <h3>Mathematics / Account</h3>
+      <ul>
+        <li><strong>Method:</strong> Practice every exercise in the textbook. Then move to past questions. Then model sets. Repetition is the only strategy.</li>
+        <li><strong>Common mistake:</strong> Skipping chapters that seem "hard." Every chapter has guaranteed marks in the exam.</li>
+        <li><strong>Score higher:</strong> Learn to show every step clearly — partial marks are given for correct working even if the final answer is wrong.</li>
+      </ul>
+    </div>
+
+    <div class="subject-block">
+      <div class="tag">English</div>
+      <h3>English</h3>
+      <ul>
+        <li><strong>Method:</strong> Practice writing (essays, letters, reports) weekly. Learn grammar rules by doing exercises, not just reading rules.</li>
+        <li><strong>Common mistake:</strong> Ignoring writing sections. Composition questions (essay, report) carry significant marks but students prepare only reading sections.</li>
+        <li><strong>Score higher:</strong> Write at least 2 essays and 2 formal letters per week in the final 2 months. Structure and vocabulary matter.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- SECTION 5 -->
+  <section>
+    <h2>5. Past Questions &amp; Model Sets Strategy</h2>
+
+    <p>Past questions are the single most powerful resource available to you. Use them strategically, not randomly.</p>
+
+    <ul>
+      <li><strong>Start chapter-wise:</strong> After finishing a chapter, immediately solve past questions from that chapter — not the full paper.</li>
+      <li><strong>Spot patterns:</strong> Track which questions repeat across 2078, 2079, 2080, 2081. Questions that repeat 3+ times will appear again.</li>
+      <li><strong>Timed full sets:</strong> In the final 6 weeks, solve full 3-hour papers in one sitting. This trains your brain for exam conditions.</li>
+      <li><strong>Analyze mistakes:</strong> After every model set, mark every wrong answer and revisit that concept the same day.</li>
+      <li><strong>Do not memorize answers:</strong> Understand why an answer is correct — NEB sometimes changes numbers in numericals.</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Target:</strong> Solve at least 5 years of past questions per subject before your exam. That alone will put you ahead of 70% of students.
+    </div>
+  </section>
+
+  <!-- SECTION 6 -->
+  <section>
+    <h2>6. Notes, PDFs &amp; Digital Resources</h2>
+
+    <h3>How to Use Notes Effectively</h3>
+    <ul>
+      <li>Make your own short notes after completing each chapter — do not just read someone else's notes passively.</li>
+      <li>Keep one "formula sheet" per subject with all key formulas and reactions — review it daily in the final month.</li>
+      <li>Use diagrams and flowcharts for memory-heavy topics (Biology, Chemistry).</li>
+    </ul>
+
+    <h3>Mistakes Students Make with Notes</h3>
+    <ul>
+      <li>Collecting 20 PDFs and reading none of them thoroughly.</li>
+      <li>Writing long notes that mirror the textbook — notes should be shorter, not the same.</li>
+      <li>Not revising notes after making them. Notes with zero revision = zero benefit.</li>
+    </ul>
+
+    <h3>Smart Revision Techniques</h3>
+    <ul>
+      <li><strong>Spaced repetition:</strong> Review your notes on Day 1, Day 3, Day 7, and Day 14 after writing them.</li>
+      <li><strong>Active recall:</strong> Close your notes and write what you remember — then check. This fixes information in memory.</li>
+      <li><strong>Teach it:</strong> Explain a concept out loud as if teaching someone else. You will immediately know what you don't understand.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 7 -->
+  <section>
+    <h2>7. 1 Month Before Exam Plan</h2>
+
+    <h3>What to Focus On</h3>
+    <ul>
+      <li>High-frequency past question topics per subject</li>
+      <li>Short notes revision — one subject every 2 days minimum</li>
+      <li>Full model sets (2 per week, timed)</li>
+      <li>Weak areas identified in your practice tests</li>
+    </ul>
+
+    <h3>What to Stop Doing</h3>
+    <ul>
+      <li>Stop starting new chapters you haven't studied yet</li>
+      <li>Stop spending hours on social media — even 1 hour daily costs you 30 hours this month</li>
+      <li>Stop studying in groups if it leads to more talking than studying</li>
+    </ul>
+
+    <div class="callout">
+      <strong>Priority order this month:</strong> Revision &gt; Practice sets &gt; Weak areas &gt; Formula memorization. Do not start anything new.
+    </div>
+  </section>
+
+  <!-- SECTION 8 -->
+  <section>
+    <h2>8. 1 Week Before Exam</h2>
+
+    <h3>Final Revision Strategy</h3>
+    <ul>
+      <li>Revise only your short notes and formula sheets — no new textbook reading</li>
+      <li>Solve one past paper per subject — just for confidence and timing check</li>
+      <li>Focus the last 2 days before each exam on that specific subject only</li>
+    </ul>
+
+    <h3>Memory Techniques</h3>
+    <ul>
+      <li>Use mnemonics for lists and sequences (especially Biology and Chemistry)</li>
+      <li>Rewrite key formulas and reactions from memory each morning</li>
+      <li>Read your notes aloud — auditory memory reinforces visual memory</li>
+    </ul>
+
+    <h3>Sleep and Routine</h3>
+    <ul>
+      <li>Sleep 7–8 hours without compromise — sleep consolidates memory</li>
+      <li>Stop studying after 10 PM — late-night cramming reduces next-day retention</li>
+      <li>Keep the same wake time daily to maintain your mental rhythm</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 9 -->
+  <section>
+    <h2>9. Day Before Exam Strategy</h2>
+
+    <h3>What to Revise</h3>
+    <ul>
+      <li>Formula sheets and key definitions only — light reading</li>
+      <li>Common question types and your approach to answering them</li>
+      <li>Any 2–3 topics you feel least confident about</li>
+    </ul>
+
+    <h3>What NOT to Do</h3>
+    <ul>
+      <li>Do not attempt a full model set — this creates anxiety, not confidence</li>
+      <li>Do not study until midnight — your brain needs rest, not more input</li>
+      <li>Do not discuss "what might come" with panicking friends — it only spreads anxiety</li>
+    </ul>
+
+    <h3>Mental Preparation</h3>
+    <ul>
+      <li>Pack your exam materials (admit card, pen, geometry box) the night before</li>
+      <li>Eat well, sleep by 10 PM, wake fresh. That is your real exam strategy for this day.</li>
+      <li>Remind yourself: you have prepared — trust the process.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 10 -->
+  <section>
+    <h2>10. Exam Hall Strategy</h2>
+
+    <h3>Time Management During Exam</h3>
+    <ul>
+      <li>Read the full question paper in the first 5 minutes — identify which questions you know best</li>
+      <li>Attempt easy/confident questions first — build momentum</li>
+      <li>Allocate time per question: for a 3-hour, 100-mark paper, spend roughly 1.5–2 minutes per mark</li>
+      <li>Keep 10 minutes at the end for review and corrections</li>
+    </ul>
+
+    <h3>How to Attempt Questions</h3>
+    <ul>
+      <li>For numericals: always write the formula first, then substitute values, then solve step by step</li>
+      <li>For theory: write in clear points, not long paragraphs — examiners scan quickly</li>
+      <li>Never leave a question blank — attempt every question, even partially</li>
+    </ul>
+
+    <h3>Answer Presentation Tips</h3>
+    <ul>
+      <li>Underline key terms and final answers</li>
+      <li>Draw diagrams wherever applicable — they earn extra marks</li>
+      <li>Write neatly and use proper headings. Presentation directly affects examiner impression.</li>
+    </ul>
+  </section>
+
+  <!-- SECTION 11 -->
+  <section>
+    <h2>11. Common Mistakes to Avoid</h2>
+
+    <ol class="mistake-list">
+      <li><strong>Starting late:</strong> Beginning serious preparation only 1 month before exams leaves no time for proper revision cycles.</li>
+      <li><strong>Passive studying:</strong> Reading notes without writing or solving anything — you forget 80% within 24 hours.</li>
+      <li><strong>Skipping practicals &amp; internal assessments:</strong> These 25 marks are easy — ignoring them is pure loss.</li>
+      <li><strong>Not using past questions:</strong> Studying only from textbooks without practicing exam-format questions is a critical mistake.</li>
+      <li><strong>Over-relying on notes from others:</strong> Pre-made notes don't replace understanding. You can't answer application questions from memorized notes alone.</li>
+      <li><strong>No timed practice:</strong> Never practicing under 3-hour conditions means time pressure will ruin you in the actual exam.</li>
+      <li><strong>Studying all subjects equally:</strong> Every subject has different demands. Flat time distribution is inefficient strategy.</li>
+      <li><strong>Neglecting English writing:</strong> Most students practice only reading comprehension and ignore essays and letters — this directly costs 20+ marks.</li>
+      <li><strong>Panic revision in the last week:</strong> Trying to learn new chapters in the final week causes confusion and destroys confidence in what you already know.</li>
+      <li><strong>Poor sleep before exams:</strong> An exhausted brain underperforms no matter how much you have studied.</li>
+    </ol>
+  </section>
+
+  <!-- SECTION 12 -->
+  <section>
+    <h2>12. Final Checklist Before Exams</h2>
+    <p>Tick each item as you complete it. Watch your readiness score go up in real time.</p>
+
+    <!-- PROGRESS HEADER -->
+    <div class="checklist-widget">
+      <div class="cw-top">
+        <div class="cw-pct-wrap">
+          <span class="cw-pct" id="cw-pct">0%</span>
+          <span class="cw-ready-label" id="cw-ready-label">Exam Ready</span>
+        </div>
+        <div class="cw-right">
+          <span class="cw-msg" id="cw-msg">Not started yet — let's go!</span>
+          <span class="cw-count" id="cw-count">0 / 12 completed</span>
+        </div>
+      </div>
+
+      <div class="cw-bar-outer">
+        <div class="cw-bar-inner" id="cw-bar" style="width:0%"></div>
+        <div class="cw-bar-milestones">
+          <span style="left:25%">25%</span>
+          <span style="left:50%">50%</span>
+          <span style="left:75%">75%</span>
+          <span style="left:100%">100%</span>
+        </div>
+      </div>
+
+      <!-- CHECKLIST ITEMS -->
+      <ul class="cw-list" id="cw-list">
+        <li class="cw-item" data-i="0" onclick="cwToggle(0)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">All chapters in every subject completed at least once</span>
+          <span class="cw-tag t-prep">Prep</span>
+        </li>
+        <li class="cw-item" data-i="1" onclick="cwToggle(1)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Short notes and formula sheets ready for each subject</span>
+          <span class="cw-tag t-prep">Prep</span>
+        </li>
+        <li class="cw-item" data-i="2" onclick="cwToggle(2)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Past questions (minimum 5 years) solved for all subjects</span>
+          <span class="cw-tag t-practice">Practice</span>
+        </li>
+        <li class="cw-item" data-i="3" onclick="cwToggle(3)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">At least 3 full timed model sets completed per subject</span>
+          <span class="cw-tag t-practice">Practice</span>
+        </li>
+        <li class="cw-item" data-i="4" onclick="cwToggle(4)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Weak areas identified and specifically revised</span>
+          <span class="cw-tag t-prep">Prep</span>
+        </li>
+        <li class="cw-item" data-i="5" onclick="cwToggle(5)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Practical / internal work submitted — marks secured</span>
+          <span class="cw-tag t-logistics">Logistics</span>
+        </li>
+        <li class="cw-item" data-i="6" onclick="cwToggle(6)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Daily revision routine set for the final week</span>
+          <span class="cw-tag t-prep">Prep</span>
+        </li>
+        <li class="cw-item" data-i="7" onclick="cwToggle(7)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Admit card printed and placed safely</span>
+          <span class="cw-tag t-logistics">Logistics</span>
+        </li>
+        <li class="cw-item" data-i="8" onclick="cwToggle(8)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Exam materials packed (pens, pencils, geometry box, eraser)</span>
+          <span class="cw-tag t-logistics">Logistics</span>
+        </li>
+        <li class="cw-item" data-i="9" onclick="cwToggle(9)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">Sleep schedule fixed — 10 PM to 5:30 AM minimum</span>
+          <span class="cw-tag t-mindset">Mindset</span>
+        </li>
+        <li class="cw-item" data-i="10" onclick="cwToggle(10)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">No new chapters being started in the final week</span>
+          <span class="cw-tag t-mindset">Mindset</span>
+        </li>
+        <li class="cw-item" data-i="11" onclick="cwToggle(11)">
+          <span class="cw-box"><svg class="cw-tick" viewBox="0 0 12 12"><polyline points="1.5,6 4.5,9 10.5,3"/></svg></span>
+          <span class="cw-text">High-frequency past question topics reviewed for each subject</span>
+          <span class="cw-tag t-practice">Practice</span>
+        </li>
+      </ul>
+
+      <div class="cw-congrats" id="cw-congrats">
+        All 12 done! You are fully prepared. Go into that exam hall with confidence.
+      </div>
+
+      <div style="text-align:right; margin-top:12px;">
+        <button class="cw-reset" onclick="cwReset()">Reset checklist</button>
+      </div>
+    </div>
+
+    <div class="callout" style="margin-top:24px;">
+      <strong>Remember:</strong> Consistent preparation over months beats 2-week cramming every time. You already know more than you think — trust your preparation, manage your time in the exam hall, and execute what you have practiced.
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p>Published by <strong>EduBoost Nepal</strong> &mdash; Your NEB Exam Resource Hub</p>
+  <p style="margin-top:6px; font-size:12px; opacity:0.6;">© 2082 B.S. EduBoost-Nepal. All rights reserved. Content designed exclusively for NEB Class 12 students.</p>
+</footer>
+
+<script>
+  var cwState = {};
+  var cwMsgs = [
+    "Not started yet — let's go!",
+    "1 down, 11 to go. Good start!",
+    "2 done — you're moving!",
+    "3 ticked off. Keep the momentum!",
+    "4 complete — one-third of the way!",
+    "Halfway there. Solid progress!",
+    "6 done — more than halfway!",
+    "7 ticked. You're in the final stretch!",
+    "8 complete — getting very close!",
+    "9 done — almost there!",
+    "10 down — just 2 more!",
+    "11 done — one final tick!",
+    "All 12 done! You are ready. Go nail it!"
+  ];
+
+  function cwToggle(i) {
+    cwState[i] = !cwState[i];
+    cwRender();
+    try { localStorage.setItem('neb_cw_82', JSON.stringify(cwState)); } catch(e) {}
+  }
+
+  function cwReset() {
+    cwState = {};
+    try { localStorage.removeItem('neb_cw_82'); } catch(e) {}
+    cwRender();
+  }
+
+  function cwRender() {
+    var done = 0;
+    var total = 12;
+    for (var k in cwState) { if (cwState[k]) done++; }
+    var pct = Math.round((done / total) * 100);
+
+    document.getElementById('cw-pct').textContent = pct + '%';
+    document.getElementById('cw-bar').style.width = pct + '%';
+    document.getElementById('cw-count').textContent = done + ' / ' + total + ' completed';
+    document.getElementById('cw-msg').textContent = cwMsgs[done];
+
+    var bar = document.getElementById('cw-bar');
+    if (pct === 0) bar.style.background = '#e8ddd0';
+    else if (pct < 40) bar.style.background = 'linear-gradient(90deg,#c0392b,#e74c3c)';
+    else if (pct < 75) bar.style.background = 'linear-gradient(90deg,#e67e22,#f39c12)';
+    else bar.style.background = 'linear-gradient(90deg,#27ae60,#2ecc71)';
+
+    for (var j = 0; j < total; j++) {
+      var el = document.querySelector('.cw-item[data-i="' + j + '"]');
+      if (el) {
+        if (cwState[j]) el.classList.add('done');
+        else el.classList.remove('done');
+      }
+    }
+
+    document.getElementById('cw-congrats').style.display = (done === total) ? 'block' : 'none';
+  }
+
+  (function() {
+    try {
+      var saved = localStorage.getItem('neb_cw_82');
+      if (saved) cwState = JSON.parse(saved);
+    } catch(e) {}
+    cwRender();
+  })();
+</script>
+</body>
+</html>

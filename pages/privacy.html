@@ -1,0 +1,815 @@
+<!doctype html>
+<html lang="en" class="dark scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy — EduBoost Nepal</title>
+    <meta
+      name="description"
+      content="Privacy Policy for EduBoost Nepal — how we collect, use, and protect your data."
+    />
+    <link rel="icon" href="../public/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Sora", "sans-serif"],
+              serif: ["DM Serif Display", "serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      :root {
+        --glass: rgba(255, 255, 255, 0.05);
+        --glass-border: rgba(255, 255, 255, 0.1);
+      }
+      .glass {
+        background: var(--glass);
+        backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+      }
+      .gradient-text {
+        background: linear-gradient(135deg, #fb923c, #f97316, #dc2626);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      .btn-primary {
+        background: linear-gradient(135deg, #f97316, #dc2626);
+      }
+      .nepal-stripe {
+        background: linear-gradient(90deg, #003893 50%, #dc143c 50%);
+        height: 3px;
+      }
+      .prose-custom h2 {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: white;
+        margin-top: 2.5rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+      .prose-custom h3 {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #fb923c;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .prose-custom p {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+      }
+      .prose-custom ul {
+        margin: 0.75rem 0 1rem 0;
+        padding-left: 1.25rem;
+      }
+      .prose-custom ul li {
+        color: #94a3b8;
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 0.4rem;
+        list-style: disc;
+      }
+      .prose-custom a {
+        color: #fb923c;
+        text-decoration: underline;
+      }
+      .prose-custom strong {
+        color: #e2e8f0;
+        font-weight: 600;
+      }
+      .toc-link {
+        display: block;
+        padding: 0.4rem 0.75rem;
+        border-radius: 0.5rem;
+        font-size: 0.8rem;
+        color: #94a3b8;
+        transition: all 0.2s;
+        border-left: 2px solid transparent;
+      }
+      .toc-link:hover {
+        color: #fb923c;
+        border-left-color: #fb923c;
+        background: rgba(249, 115, 22, 0.08);
+      }
+      .data-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.4rem;
+        background: rgba(249, 115, 22, 0.1);
+        border: 1px solid rgba(249, 115, 22, 0.2);
+        border-radius: 9999px;
+        padding: 0.25rem 0.75rem;
+        font-size: 0.75rem;
+        color: #fb923c;
+        margin: 0.25rem;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-950 text-white font-sans antialiased">
+    <div class="nepal-stripe w-full"></div>
+
+    <!-- Nav -->
+    <nav class="bg-slate-900 border-b border-slate-800 px-4 py-4">
+      <div class="max-w-7xl mx-auto flex items-center justify-between">
+        <a href="../index.html" class="flex items-center gap-3">
+          <img
+            src="../public/favicon.png"
+            alt="EduBoost Nepal"
+            class="w-8 h-8 rounded-xl object-cover"
+          />
+          <span class="font-bold"
+            >EduBoost <span class="gradient-text">Nepal</span></span
+          >
+        </a>
+        <div class="flex items-center gap-3 text-sm">
+          <a
+            href="terms.html"
+            class="text-slate-400 hover:text-white transition-colors hidden sm:block"
+            >Terms of Service</a
+          >
+          <a
+            href="login.html"
+            class="btn-primary text-white font-semibold px-4 py-2 rounded-xl text-xs"
+            >Sign In</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Banner -->
+    <div
+      class="bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 border-b border-slate-800 py-12 px-4"
+    >
+      <div class="max-w-3xl mx-auto text-center">
+        <div
+          class="inline-flex items-center gap-2 glass px-4 py-2 rounded-full text-xs text-orange-300 mb-5"
+        >
+          🔒 Legal Document
+        </div>
+        <h1 class="font-serif text-4xl lg:text-5xl mb-4">
+          Privacy <span class="gradient-text">Policy</span>
+        </h1>
+        <p class="text-slate-400 text-sm">
+          We respect your privacy. Here's exactly what data we collect and why.
+        </p>
+        <div
+          class="flex items-center justify-center gap-6 mt-5 text-xs text-slate-500"
+        >
+          <span>📅 Last updated: January 1, 2025</span>
+          <span>•</span>
+          <span>🇳🇵 Governed by Nepal law</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick summary cards -->
+    <div class="max-w-4xl mx-auto px-4 py-10">
+      <h2
+        class="text-center text-sm font-semibold text-slate-400 uppercase tracking-wider mb-6"
+      >
+        At a Glance — Our Privacy Commitments
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="text-2xl mb-2">🚫</div>
+          <div class="text-xs font-semibold text-white mb-1">No Selling</div>
+          <div class="text-slate-500 text-xs">
+            We never sell your personal data to third parties
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="text-2xl mb-2">🔒</div>
+          <div class="text-xs font-semibold text-white mb-1">Encrypted</div>
+          <div class="text-slate-500 text-xs">
+            All data is encrypted in transit and at rest
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="text-2xl mb-2">🧒</div>
+          <div class="text-xs font-semibold text-white mb-1">Child Safe</div>
+          <div class="text-slate-500 text-xs">
+            Extra protections for users under 18
+          </div>
+        </div>
+        <div class="glass rounded-2xl p-5 text-center">
+          <div class="text-2xl mb-2">✂️</div>
+          <div class="text-xs font-semibold text-white mb-1">
+            Delete Anytime
+          </div>
+          <div class="text-slate-500 text-xs">
+            Request full account & data deletion anytime
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
+      <div class="flex gap-10 items-start">
+        <!-- Sidebar TOC (desktop) -->
+        <aside class="hidden lg:block w-56 flex-shrink-0 sticky top-8">
+          <div class="glass rounded-2xl p-4">
+            <div
+              class="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3 px-1"
+            >
+              Contents
+            </div>
+            <nav class="space-y-0.5">
+              <a href="#overview" class="toc-link">1. Overview</a>
+              <a href="#collection" class="toc-link">2. Data We Collect</a>
+              <a href="#usage" class="toc-link">3. How We Use Data</a>
+              <a href="#sharing" class="toc-link">4. Data Sharing</a>
+              <a href="#firebase" class="toc-link">5. Firebase & Google</a>
+              <a href="#ai-data" class="toc-link">6. AI & Gemini</a>
+              <a href="#cookies" class="toc-link">7. Cookies & Storage</a>
+              <a href="#children" class="toc-link">8. Children's Privacy</a>
+              <a href="#security" class="toc-link">9. Data Security</a>
+              <a href="#retention" class="toc-link">10. Data Retention</a>
+              <a href="#rights" class="toc-link">11. Your Rights</a>
+              <a href="#updates" class="toc-link">12. Policy Updates</a>
+              <a href="#contact-us" class="toc-link">13. Contact Us</a>
+            </nav>
+          </div>
+          <div class="glass rounded-2xl p-4 mt-4 text-center">
+            <div class="text-2xl mb-2">🔒</div>
+            <div class="text-xs text-slate-400 mb-3">Privacy questions?</div>
+            <a
+              href="mailto:privacy@eduboostnepal.com"
+              class="text-orange-400 text-xs hover:text-orange-300 transition-colors break-all"
+              >privacy@eduboostnepal.com</a
+            >
+          </div>
+        </aside>
+
+        <!-- Main content -->
+        <main class="flex-1 max-w-3xl prose-custom">
+          <!-- Intro box -->
+          <div class="glass rounded-2xl p-6 mb-8 border-l-4 border-blue-500">
+            <p class="text-slate-300 text-sm leading-relaxed m-0">
+              EduBoost Nepal ("we," "our," or "us") is committed to protecting
+              your privacy. This Privacy Policy explains how we collect, use,
+              disclose, and safeguard your information when you use our
+              educational platform at <strong>eduboostnepal.com</strong>. We are
+              an independent platform serving NEB students and teachers in
+              Nepal.
+            </p>
+          </div>
+
+          <section id="overview">
+            <h2>1. Overview</h2>
+            <p>
+              EduBoost Nepal is built on Firebase (by Google) for authentication
+              and database services, and uses Google Gemini AI for generating
+              educational content. This means your data is processed by Google's
+              infrastructure in addition to our own systems. We have made every
+              effort to ensure this is handled securely and transparently.
+            </p>
+            <p>
+              This policy applies to all users of EduBoost Nepal, including
+              students, teachers, and visitors to our website.
+            </p>
+          </section>
+
+          <section id="collection">
+            <h2>2. Data We Collect</h2>
+            <h3>Information You Provide</h3>
+            <p>When you create an account or use our services, we collect:</p>
+            <div class="flex flex-wrap gap-1 my-3 not-prose">
+              <span class="data-badge">📧 Email address</span>
+              <span class="data-badge">👤 Full name</span>
+              <span class="data-badge">🎭 Account role (Student/Teacher)</span>
+              <span class="data-badge">📚 Class level (11 or 12)</span>
+              <span class="data-badge">🔑 Encrypted password</span>
+            </div>
+            <p>
+              If you sign in with Google, we also receive your Google profile
+              name and profile picture from Google's authentication service.
+            </p>
+
+            <h3>Content You Create</h3>
+            <p>
+              If you are a Teacher account holder, any notes or blog posts you
+              add to the platform are stored in our database. Students' saved
+              AI-generated content (questions and answers) is also stored,
+              associated with your user ID.
+            </p>
+
+            <h3>Automatically Collected Information</h3>
+            <p>We may automatically collect:</p>
+            <ul>
+              <li>
+                <strong>Usage data:</strong> Pages visited, features used, time
+                spent on platform.
+              </li>
+              <li>
+                <strong>Device information:</strong> Browser type, operating
+                system, screen resolution.
+              </li>
+              <li>
+                <strong>Log data:</strong> IP address, access times, referring
+                URLs — collected by Firebase automatically.
+              </li>
+              <li>
+                <strong>Local storage:</strong> We use browser localStorage to
+                store your dark mode preference and AI generation count locally
+                on your device. This data never leaves your browser.
+              </li>
+            </ul>
+
+            <h3>Information We Do NOT Collect</h3>
+            <ul>
+              <li>
+                We do not collect payment or financial information (the platform
+                is free).
+              </li>
+              <li>We do not collect your physical address or phone number.</li>
+              <li>We do not collect biometric data.</li>
+              <li>
+                We do not collect the content of your AI prompts in a way that
+                is stored beyond Gemini API's own processing.
+              </li>
+            </ul>
+          </section>
+
+          <section id="usage">
+            <h2>3. How We Use Your Data</h2>
+            <p>We use the data we collect for the following purposes:</p>
+            <ul>
+              <li>
+                <strong>Account management:</strong> To create and manage your
+                account, authenticate your identity, and provide personalized
+                features.
+              </li>
+              <li>
+                <strong>Service delivery:</strong> To provide the AI tools,
+                notes, blog posts, and downloads you access through the
+                platform.
+              </li>
+              <li>
+                <strong>Saved content:</strong> To store and retrieve your saved
+                AI-generated questions and answers.
+              </li>
+              <li>
+                <strong>Role-based access:</strong> To differentiate between
+                Student and Teacher privileges on the platform.
+              </li>
+              <li>
+                <strong>Communication:</strong> To send important service
+                notifications, such as changes to these policies (via email, if
+                provided).
+              </li>
+              <li>
+                <strong>Platform improvement:</strong> To understand how the
+                platform is used in aggregate, identify bugs, and improve
+                features.
+              </li>
+              <li>
+                <strong>Safety and security:</strong> To detect and prevent
+                fraud, abuse, or violations of our Terms of Service.
+              </li>
+            </ul>
+            <p>
+              We do <strong>not</strong> use your data for advertising
+              profiling, selling to third-party marketers, or any purpose
+              unrelated to providing and improving our educational platform.
+            </p>
+          </section>
+
+          <section id="sharing">
+            <h2>4. Data Sharing & Disclosure</h2>
+            <p>
+              We do not sell, rent, or trade your personal information. We may
+              share your information only in the following circumstances:
+            </p>
+
+            <h3>Service Providers</h3>
+            <p>
+              We use Google Firebase (Authentication, Firestore) as our primary
+              infrastructure provider. Your account data and saved content are
+              stored in Google's Firestore database. Google's handling of this
+              data is governed by
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener"
+                >Google's Privacy Policy</a
+              >
+              and their Firebase Data Processing and Security Terms.
+            </p>
+
+            <h3>AI Processing</h3>
+            <p>
+              When you use the AI Question Generator or Answer Generator, the
+              text of your request (subject, chapter, question type, etc.) is
+              sent to Google Gemini API to generate a response. Please review
+              <a
+                href="https://ai.google.dev/gemini-api/terms"
+                target="_blank"
+                rel="noopener"
+                >Google Gemini API Terms</a
+              >
+              to understand how Google processes this data.
+            </p>
+
+            <h3>Legal Requirements</h3>
+            <p>
+              We may disclose your information if required to do so by law,
+              court order, or government regulation under the laws of Nepal.
+            </p>
+
+            <h3>Business Transfers</h3>
+            <p>
+              In the event of a merger, acquisition, or sale of assets, your
+              information may be transferred to the new entity, subject to the
+              same privacy protections described here.
+            </p>
+
+            <h3>With Your Consent</h3>
+            <p>
+              In any other case, we will obtain your explicit consent before
+              sharing your personal data.
+            </p>
+          </section>
+
+          <section id="firebase">
+            <h2>5. Firebase & Google Services</h2>
+            <p>EduBoost Nepal uses the following Google/Firebase services:</p>
+            <ul>
+              <li>
+                <strong>Firebase Authentication:</strong> Manages your login
+                sessions and identity verification. Supports email/password and
+                Google Sign-In.
+              </li>
+              <li>
+                <strong>Cloud Firestore:</strong> Our database where user
+                profiles, notes, blog posts, and your saved content are stored.
+              </li>
+              <li>
+                <strong>Firebase Hosting (if deployed there):</strong> Serves
+                the web application files.
+              </li>
+            </ul>
+            <p>
+              These services may store data on Google's servers, which may be
+              located outside Nepal. By using our platform, you consent to this
+              data transfer. Google's data centers comply with international
+              security standards (ISO 27001, SOC 2, etc.).
+            </p>
+            <p>
+              You can learn more about Google's data practices at
+              <a
+                href="https://policies.google.com/privacy"
+                target="_blank"
+                rel="noopener"
+                >policies.google.com/privacy</a
+              >.
+            </p>
+          </section>
+
+          <section id="ai-data">
+            <h2>6. AI & Gemini API Data</h2>
+            <p>
+              When you use our AI-powered tools, the following data is sent to
+              Google's Gemini API:
+            </p>
+            <ul>
+              <li>
+                The subject, chapter, question type, and other settings you
+                select.
+              </li>
+              <li>The question text you enter in the Answer Generator.</li>
+            </ul>
+            <p>
+              We do <strong>not</strong> send your name, email, or user ID to
+              the Gemini API. Requests are made without personally identifying
+              information wherever possible.
+            </p>
+            <p>
+              Google may use the data sent to Gemini API in accordance with
+              their API usage policies. We recommend reviewing
+              <a
+                href="https://ai.google.dev/gemini-api/terms"
+                target="_blank"
+                rel="noopener"
+                >Google's Gemini API Terms of Service</a
+              >
+              for details on how API input data may be used by Google to improve
+              their models.
+            </p>
+          </section>
+
+          <section id="cookies">
+            <h2>7. Cookies & Local Storage</h2>
+            <h3>Firebase Authentication Cookies</h3>
+            <p>
+              Firebase Authentication uses browser cookies and session storage
+              to maintain your login session. These are necessary for the
+              platform to function and cannot be disabled if you wish to remain
+              logged in.
+            </p>
+
+            <h3>localStorage</h3>
+            <p>
+              We store the following in your browser's localStorage (locally on
+              your device only — not sent to any server):
+            </p>
+            <ul>
+              <li>
+                <strong>darkMode:</strong> Your light/dark mode preference.
+              </li>
+              <li>
+                <strong>questionCount:</strong> A local counter of how many
+                questions you've generated.
+              </li>
+            </ul>
+
+            <h3>No Advertising Cookies</h3>
+            <p>
+              We do not use advertising cookies, third-party tracking cookies,
+              or analytics platforms that track you across other websites.
+            </p>
+          </section>
+
+          <section id="children">
+            <h2>8. Children's Privacy</h2>
+            <p>
+              EduBoost Nepal is designed for NEB Class 11 and 12 students, who
+              are typically between 15 and 18 years old. We take the privacy of
+              younger users seriously.
+            </p>
+            <p>
+              We do not knowingly collect personal information from children
+              under the age of 13 without verifiable parental consent. If you
+              are under 13, please do not use our service without a parent or
+              guardian present and consenting.
+            </p>
+            <p>
+              For users aged 13–17, we recommend that a parent or guardian
+              review this Privacy Policy. Parents who believe their child has
+              provided personal information to us without consent may contact us
+              at
+              <a href="mailto:privacy@eduboostnepal.com"
+                >privacy@eduboostnepal.com</a
+              >
+              to request deletion.
+            </p>
+            <p>
+              We do not serve targeted advertising to any users, and especially
+              not to minors. AI-generated content is educational in nature and
+              designed to be age-appropriate for secondary school students.
+            </p>
+          </section>
+
+          <section id="security">
+            <h2>9. Data Security</h2>
+            <p>
+              We implement reasonable technical and organizational measures to
+              protect your personal information:
+            </p>
+            <ul>
+              <li>
+                <strong>Encryption in transit:</strong> All data between your
+                browser and our servers is encrypted using HTTPS/TLS.
+              </li>
+              <li>
+                <strong>Firestore security rules:</strong> Our database is
+                configured so that users can only access their own data. Notes
+                and blog posts have public read access as required for the
+                platform, but write access is restricted to authenticated users.
+              </li>
+              <li>
+                <strong>Password hashing:</strong> Firebase Authentication
+                handles password storage using industry-standard secure hashing.
+                We never see or store your plain-text password.
+              </li>
+              <li>
+                <strong>API key security:</strong> We encourage platform
+                administrators to restrict their Firebase and Gemini API keys to
+                specific domains to prevent unauthorized use.
+              </li>
+            </ul>
+            <p>
+              However, no method of transmission over the internet or method of
+              electronic storage is 100% secure. We cannot guarantee absolute
+              security of your data.
+            </p>
+          </section>
+
+          <section id="retention">
+            <h2>10. Data Retention</h2>
+            <p>
+              We retain your personal data for as long as your account is active
+              or as needed to provide services. Specifically:
+            </p>
+            <ul>
+              <li>
+                <strong>User profile data:</strong> Retained while your account
+                is active and for 30 days after deletion (for recovery
+                purposes), then permanently deleted.
+              </li>
+              <li>
+                <strong>Saved content:</strong> Retained until you delete it or
+                your account is deleted.
+              </li>
+              <li>
+                <strong>Teacher-uploaded notes/posts:</strong> Retained on the
+                platform until deleted by the teacher or an admin.
+              </li>
+              <li>
+                <strong>Log data:</strong> Firebase may retain server logs for
+                up to 12 months per their own policies.
+              </li>
+            </ul>
+            <p>
+              You may request deletion of your account and all associated
+              personal data at any time by emailing
+              <a href="mailto:privacy@eduboostnepal.com"
+                >privacy@eduboostnepal.com</a
+              >. We will process such requests within 30 days.
+            </p>
+          </section>
+
+          <section id="rights">
+            <h2>11. Your Rights</h2>
+            <p>
+              As a user of EduBoost Nepal, you have the following rights
+              regarding your personal data:
+            </p>
+            <ul>
+              <li>
+                <strong>Right to access:</strong> Request a copy of the personal
+                data we hold about you.
+              </li>
+              <li>
+                <strong>Right to rectification:</strong> Request correction of
+                inaccurate data.
+              </li>
+              <li>
+                <strong>Right to erasure:</strong> Request deletion of your
+                account and personal data ("right to be forgotten").
+              </li>
+              <li>
+                <strong>Right to data portability:</strong> Request your data in
+                a machine-readable format.
+              </li>
+              <li>
+                <strong>Right to object:</strong> Object to certain types of
+                processing of your data.
+              </li>
+              <li>
+                <strong>Right to withdraw consent:</strong> Where processing is
+                based on consent, you may withdraw consent at any time by
+                deleting your account.
+              </li>
+            </ul>
+            <p>
+              To exercise any of these rights, please email us at
+              <a href="mailto:privacy@eduboostnepal.com"
+                >privacy@eduboostnepal.com</a
+              >
+              with your request. We will respond within 30 days. You may be
+              asked to verify your identity before we can fulfill a request.
+            </p>
+            <p>
+              You also have the right to lodge a complaint with the relevant
+              data protection authority in Nepal.
+            </p>
+          </section>
+
+          <section id="updates">
+            <h2>12. Policy Updates</h2>
+            <p>
+              We may update this Privacy Policy from time to time to reflect
+              changes in our practices, technology, legal requirements, or other
+              factors. We will post the updated policy on this page with a
+              revised "Last updated" date.
+            </p>
+            <p>
+              For significant changes, we will make reasonable efforts to notify
+              users by email or through a prominent notice on the platform at
+              least 14 days before the change takes effect.
+            </p>
+            <p>
+              Your continued use of EduBoost Nepal after any changes constitutes
+              your acceptance of the updated Privacy Policy.
+            </p>
+          </section>
+
+          <section id="contact-us">
+            <h2>13. Contact Us</h2>
+            <p>
+              If you have any questions, concerns, or requests related to this
+              Privacy Policy or the handling of your personal data, please
+              contact us:
+            </p>
+            <div class="glass rounded-2xl p-5 mt-4 not-prose">
+              <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                <div>
+                  <div
+                    class="text-xs text-slate-500 uppercase tracking-wider mb-1"
+                  >
+                    Privacy Enquiries
+                  </div>
+                  <a
+                    href="mailto:privacy@eduboostnepal.com"
+                    class="text-orange-400 hover:text-orange-300 transition-colors"
+                    >privacy@eduboostnepal.com</a
+                  >
+                </div>
+                <div>
+                  <div
+                    class="text-xs text-slate-500 uppercase tracking-wider mb-1"
+                  >
+                    General Support
+                  </div>
+                  <a
+                    href="mailto:support@eduboostnepal.com"
+                    class="text-orange-400 hover:text-orange-300 transition-colors"
+                    >support@eduboostnepal.com</a
+                  >
+                </div>
+                <div>
+                  <div
+                    class="text-xs text-slate-500 uppercase tracking-wider mb-1"
+                  >
+                    Data Deletion Requests
+                  </div>
+                  <a
+                    href="mailto:privacy@eduboostnepal.com"
+                    class="text-orange-400 hover:text-orange-300 transition-colors"
+                    >privacy@eduboostnepal.com</a
+                  >
+                </div>
+                <div>
+                  <div
+                    class="text-xs text-slate-500 uppercase tracking-wider mb-1"
+                  >
+                    Address
+                  </div>
+                  <span class="text-slate-300"
+                    >Kathmandu, Bagmati Province, Nepal</span
+                  >
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Bottom nav -->
+          <div
+            class="mt-12 flex flex-col sm:flex-row gap-4 items-center justify-between glass rounded-2xl p-5"
+          >
+            <div class="text-sm text-slate-400">
+              Also read our
+              <a
+                href="terms.html"
+                class="text-orange-400 hover:text-orange-300 transition-colors"
+                >Terms of Service →</a
+              >
+            </div>
+            <a
+              href="../index.html"
+              class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl"
+              >Back to Home</a
+            >
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-8 bg-slate-900">
+      <div
+        class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500"
+      >
+        <div>
+          © 2025 EduBoost Nepal. All rights reserved. 🇳🇵 Made with ❤️ in Nepal
+        </div>
+        <div class="flex gap-5">
+          <a href="terms.html" class="hover:text-orange-400 transition-colors"
+            >Terms of Service</a
+          >
+          <a href="privacy.html" class="text-orange-400">Privacy Policy</a>
+          <a
+            href="../index.html"
+            class="hover:text-orange-400 transition-colors"
+            >Home</a
+          >
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
