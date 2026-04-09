@@ -4,17 +4,26 @@
 
 // ---- FIREBASE CONFIG ----
 const FIREBASE_CONFIG = {
-  apiKey: process.env.VITE_FIREBASE_API_KEY || "AIzaSyCbVzplSn0UL2KRB3B45SCByJSm2FXPByw",
-  authDomain: process.env.VITE_FIREBASE_AUTH_DOMAIN || "eduboost-f611f.firebaseapp.com",
+  apiKey:
+    process.env.VITE_FIREBASE_API_KEY ||
+    "AIzaSyCbVzplSn0UL2KRB3B45SCByJSm2FXPByw",
+  authDomain:
+    process.env.VITE_FIREBASE_AUTH_DOMAIN || "eduboost-f611f.firebaseapp.com",
   projectId: process.env.VITE_FIREBASE_PROJECT_ID || "eduboost-f611f",
-  storageBucket: process.env.VITE_FIREBASE_STORAGE_BUCKET || "eduboost-f611f.firebasestorage.app",
-  messagingSenderId: process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "121788124993",
-  appId: process.env.VITE_FIREBASE_APP_ID || "1:121788124993:web:4df0ec72b1e187e76c1bc0",
+  storageBucket:
+    process.env.VITE_FIREBASE_STORAGE_BUCKET ||
+    "eduboost-f611f.firebasestorage.app",
+  messagingSenderId:
+    process.env.VITE_FIREBASE_MESSAGING_SENDER_ID || "121788124993",
+  appId:
+    process.env.VITE_FIREBASE_APP_ID ||
+    "1:121788124993:web:4df0ec72b1e187e76c1bc0",
   measurementId: process.env.VITE_FIREBASE_MEASUREMENT_ID || "G-1SDQZYXSKS",
 };
 
 // ---- AI CONFIG ----
-const GEMINI_API_URL = process.env.VITE_GEMINI_API_URL || "/api/gemini";
+const GEMINI_API_URL =
+  process.env.VITE_GEMINI_API_URL || "/.netlify/functions/gemini";
 
 // ============================================================
 // Firebase Initialization
